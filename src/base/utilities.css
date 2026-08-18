@@ -1,0 +1,137 @@
+/* ==========================================================================
+   Hilfsklassen
+   Bewusst klein gehalten. Das System ist komponenten-, nicht utility-first;
+   hier stehen nur Dinge, für die eine eigene Komponente unverhältnismässig
+   wäre.
+   ========================================================================== */
+
+.kd-panel {
+	padding: var(--kd-ref-space-6);
+	border: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+	border-radius: var(--kd-ref-radius-md);
+	background-color: var(--kd-sys-color-bg-surface);
+}
+
+.kd-panel--subtle {
+	background-color: var(--kd-sys-color-bg-subtle);
+	border-color: transparent;
+}
+
+.kd-surface {
+	background-color: var(--kd-sys-color-bg-surface);
+}
+
+.kd-divider {
+	block-size: var(--kd-ref-border-width-hair);
+	inline-size: 100%;
+	background-color: var(--kd-sys-color-border-subtle);
+	border: 0;
+}
+
+.kd-text-center {
+	text-align: center;
+}
+
+.kd-text-end {
+	text-align: end;
+}
+
+.kd-nowrap {
+	white-space: nowrap;
+}
+
+.kd-truncate {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.kd-clamp-2,
+.kd-clamp-3 {
+	display: -webkit-box;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.kd-clamp-2 {
+	-webkit-line-clamp: 2;
+	line-clamp: 2;
+}
+
+.kd-clamp-3 {
+	-webkit-line-clamp: 3;
+	line-clamp: 3;
+}
+
+.kd-full {
+	inline-size: 100%;
+}
+
+.kd-relative {
+	position: relative;
+}
+
+.kd-flex-1 {
+	flex: 1 1 auto;
+}
+
+/* Sichtbarkeit nach Breakpoint. */
+.kd-hide-below-md {
+	display: none;
+}
+
+@media (min-width: 768px) {
+	.kd-hide-below-md {
+		display: revert;
+	}
+
+	.kd-hide-from-md {
+		display: none;
+	}
+}
+
+.kd-hide-below-lg {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.kd-hide-below-lg {
+		display: revert;
+	}
+
+	.kd-hide-from-lg {
+		display: none;
+	}
+}
+
+/* Farbrollen als Hilfsklassen — für Prototypen und Dokumentation. */
+.kd-on-accent {
+	color: var(--kd-sys-color-fg-on-accent);
+	background-color: var(--kd-sys-color-bg-accent);
+}
+
+.kd-on-inverse {
+	color: var(--kd-sys-color-fg-inverse);
+	background-color: var(--kd-sys-color-bg-inverse);
+}
+
+/* Verzögerung für gestaffelte Einblendungen. */
+.kd-delay-1 {
+	--kd-reveal-delay: 80ms;
+}
+
+.kd-delay-2 {
+	--kd-reveal-delay: 160ms;
+}
+
+.kd-delay-3 {
+	--kd-reveal-delay: 240ms;
+}
+
+.kd-delay-4 {
+	--kd-reveal-delay: 320ms;
+}
+
+.kd-delay-5 {
+	--kd-reveal-delay: 400ms;
+}

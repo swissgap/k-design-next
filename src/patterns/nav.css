@@ -1,0 +1,253 @@
+/* ==========================================================================
+   Hauptnavigation, mobiles Menü, Brotkrumen
+   Der Hover-Indikator wächst aus der Mitte; der aktive Eintrag trägt ihn
+   dauerhaft. Zusätzlich zur Farbe markiert aria-current den Zustand.
+   ========================================================================== */
+
+.kd-mainnav {
+	background-color: var(--kd-sys-color-bg-canvas);
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+}
+
+.kd-mainnav__list {
+	display: none;
+	align-items: stretch;
+	gap: var(--kd-cmp-nav-gap);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+@media (min-width: 1024px) {
+	.kd-mainnav__list {
+		display: flex;
+	}
+}
+
+.kd-mainnav__link {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	padding-block: var(--kd-ref-space-4);
+	color: var(--kd-cmp-nav-fg);
+	font-weight: var(--kd-ref-font-weight-bold);
+	text-decoration: none;
+	white-space: nowrap;
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-mainnav__link::after {
+	content: '';
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline: 0;
+	block-size: var(--kd-cmp-nav-indicator-height);
+	background-color: var(--kd-cmp-nav-indicator-color);
+	transform: scaleX(0);
+	transform-origin: center;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-mainnav__link:hover {
+		color: var(--kd-cmp-nav-fg-hover);
+	}
+
+	.kd-mainnav__link:hover::after {
+		transform: scaleX(1);
+	}
+}
+
+.kd-mainnav__link[aria-current] {
+	color: var(--kd-cmp-nav-fg-hover);
+}
+
+.kd-mainnav__link[aria-current]::after {
+	transform: scaleX(1);
+}
+
+/* ---- Mobiles Menü ------------------------------------------------------- */
+
+.kd-mobilenav {
+	display: block;
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+	background-color: var(--kd-sys-color-bg-canvas);
+}
+
+.kd-mobilenav[hidden] {
+	display: none;
+}
+
+@media (min-width: 1024px) {
+	.kd-mobilenav {
+		display: none;
+	}
+}
+
+.kd-mobilenav__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kd-mobilenav__link {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-3);
+	padding-block: var(--kd-ref-space-4);
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+	color: var(--kd-sys-color-fg-default);
+	font-weight: var(--kd-ref-font-weight-bold);
+	text-decoration: none;
+}
+
+.kd-mobilenav__link[aria-current] {
+	color: var(--kd-sys-color-fg-accent);
+}
+
+/* ---- Brotkrumen --------------------------------------------------------- */
+
+.kd-breadcrumb {
+	padding-block: var(--kd-ref-space-4);
+	font-size: var(--kd-ref-font-size-sm);
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+.kd-breadcrumb__list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kd-breadcrumb__item {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+}
+
+.kd-breadcrumb__item + .kd-breadcrumb__item::before {
+	content: '';
+	inline-size: 0.6rem;
+	block-size: 0.6rem;
+	border-inline-end: 1.5px solid currentColor;
+	border-block-start: 1.5px solid currentColor;
+	transform: rotate(45deg);
+	opacity: 0.6;
+}
+
+.kd-breadcrumb a {
+	color: var(--kd-sys-color-fg-muted);
+	text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-breadcrumb a:hover {
+		color: var(--kd-sys-color-fg-accent);
+		text-decoration: underline;
+	}
+}
+
+.kd-breadcrumb__item[aria-current] {
+	color: var(--kd-sys-color-fg-default);
+}
+
+/* ---- Seitenanker / Sprungnavigation ------------------------------------- */
+
+.kd-jumpnav {
+	position: sticky;
+	inset-block-start: var(--kd-ref-space-6);
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-1);
+	border-inline-start: var(--kd-ref-border-width-thin) solid var(--kd-sys-color-border-subtle);
+}
+
+.kd-jumpnav__link {
+	position: relative;
+	padding: var(--kd-ref-space-2) var(--kd-ref-space-4);
+	color: var(--kd-sys-color-fg-muted);
+	font-size: var(--kd-ref-font-size-sm);
+	text-decoration: none;
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-jumpnav__link::before {
+	content: '';
+	position: absolute;
+	inset-inline-start: calc(-1 * var(--kd-ref-border-width-thin));
+	inset-block: 0;
+	inline-size: var(--kd-ref-border-width-thin);
+	background-color: var(--kd-sys-color-bg-accent);
+	transform: scaleY(0);
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-jumpnav__link:hover {
+		color: var(--kd-sys-color-fg-accent);
+	}
+
+	.kd-jumpnav__link:hover::before {
+		transform: scaleY(1);
+	}
+}
+
+.kd-jumpnav__link[aria-current='true'] {
+	color: var(--kd-sys-color-fg-accent);
+	font-weight: var(--kd-ref-font-weight-bold);
+}
+
+.kd-jumpnav__link[aria-current='true']::before {
+	transform: scaleY(1);
+}
+
+/* ---- Zurück nach oben --------------------------------------------------- */
+
+.kd-back-to-top {
+	position: fixed;
+	inset-block-end: var(--kd-ref-space-6);
+	inset-inline-end: var(--kd-ref-space-6);
+	z-index: var(--kd-ref-layer-sticky);
+	display: grid;
+	place-items: center;
+	inline-size: 3rem;
+	block-size: 3rem;
+	border-radius: var(--kd-ref-radius-full);
+	background-color: var(--kd-sys-color-action-primary-bg);
+	color: var(--kd-sys-color-action-primary-fg);
+	box-shadow: var(--kd-sys-elevation-floating);
+	opacity: 0;
+	visibility: hidden;
+	transform: translateY(0.75rem);
+	transition:
+		opacity var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		visibility var(--kd-sys-motion-transition-duration),
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-back-to-top.is-visible {
+	opacity: 1;
+	visibility: visible;
+	transform: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-back-to-top:hover {
+		background-color: var(--kd-sys-color-action-primary-bg-hover);
+		transform: translateY(-3px);
+	}
+}
+
+.kd-back-to-top svg {
+	inline-size: 1.35rem;
+	block-size: 1.35rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.25;
+}

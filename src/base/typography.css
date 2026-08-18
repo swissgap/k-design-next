@@ -1,0 +1,190 @@
+/* ==========================================================================
+   Typografie
+   Noto Sans, fluide Skala über clamp(). Die Skala ersetzt die
+   Breakpoint-Treppe des swiss/designsystem durch stufenlose Interpolation —
+   gleiche Endwerte, weniger Sprünge.
+   ========================================================================== */
+
+/* Fallback-Metrik: verhindert Layoutsprung, solange Noto Sans lädt. */
+@font-face {
+	font-family: 'Noto Sans Fallback';
+	src: local('Verdana'), local('DejaVu Sans'), local('Arial');
+	size-adjust: 105%;
+	ascent-override: 100%;
+	descent-override: 26%;
+	line-gap-override: 0%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-ref-font-leading-tight);
+	letter-spacing: var(--kd-ref-font-tracking-tight);
+	color: var(--kd-sys-color-fg-strong);
+	text-wrap: balance;
+}
+
+h1,
+.kd-h1 {
+	font-size: var(--kd-sys-text-h1-size);
+}
+
+h2,
+.kd-h2 {
+	font-size: var(--kd-sys-text-h2-size);
+}
+
+h3,
+.kd-h3 {
+	font-size: var(--kd-sys-text-h3-size);
+	letter-spacing: var(--kd-ref-font-tracking-normal);
+}
+
+h4,
+.kd-h4 {
+	font-size: var(--kd-sys-text-h4-size);
+	letter-spacing: var(--kd-ref-font-tracking-normal);
+}
+
+h5,
+.kd-h5 {
+	font-size: var(--kd-sys-text-h5-size);
+	letter-spacing: var(--kd-ref-font-tracking-normal);
+}
+
+h6,
+.kd-h6 {
+	font-size: var(--kd-ref-font-size-md);
+	letter-spacing: var(--kd-ref-font-tracking-normal);
+}
+
+.kd-display {
+	font-size: var(--kd-sys-text-display-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-sys-text-display-leading);
+	letter-spacing: var(--kd-ref-font-tracking-tight);
+	color: var(--kd-sys-color-fg-strong);
+	text-wrap: balance;
+}
+
+.kd-lead {
+	font-size: var(--kd-sys-text-lead-size);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-sys-color-fg-muted);
+	text-wrap: pretty;
+}
+
+.kd-body {
+	font-size: var(--kd-sys-text-body-size);
+	line-height: var(--kd-ref-font-leading-normal);
+}
+
+.kd-small {
+	font-size: var(--kd-sys-text-small-size);
+}
+
+.kd-caption {
+	font-size: var(--kd-sys-text-caption-size);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+/* Kleine, gesperrte Auszeichnungszeile über Titeln. */
+.kd-overline {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	font-size: var(--kd-sys-text-overline-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	letter-spacing: var(--kd-ref-font-tracking-wider);
+	text-transform: uppercase;
+	color: var(--kd-sys-color-fg-accent);
+}
+
+.kd-overline::before {
+	content: '';
+	inline-size: var(--kd-ref-space-6);
+	block-size: var(--kd-ref-border-width-thin);
+	background-color: currentColor;
+	flex: none;
+}
+
+.kd-mono {
+	font-family: var(--kd-ref-font-family-mono);
+	font-size: 0.9em;
+}
+
+/* Optimale Zeilenlänge für Fliesstext. */
+.kd-measure {
+	max-inline-size: var(--kd-sys-layout-measure);
+}
+
+.kd-muted {
+	color: var(--kd-sys-color-fg-muted);
+}
+
+.kd-subtle {
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+/* Pflichtfeldstern, analog .text--asterisk im swiss/designsystem. */
+.kd-required::after {
+	content: '\2009*';
+	color: var(--kd-sys-color-status-danger-accent);
+}
+
+/* --------------------------------------------------------------------------
+   Fliesstextrhythmus: vertikale Abstände entstehen aus der Reihenfolge,
+   nicht aus Einzelmargins.
+   -------------------------------------------------------------------------- */
+
+.kd-prose > * + * {
+	margin-block-start: var(--kd-ref-space-5);
+}
+
+.kd-prose > * + h2,
+.kd-prose > * + h3,
+.kd-prose > * + h4 {
+	margin-block-start: var(--kd-ref-space-12);
+}
+
+.kd-prose > h2 + *,
+.kd-prose > h3 + *,
+.kd-prose > h4 + * {
+	margin-block-start: var(--kd-ref-space-4);
+}
+
+.kd-prose p,
+.kd-prose li {
+	max-inline-size: var(--kd-sys-layout-measure);
+	text-wrap: pretty;
+}
+
+.kd-prose ul,
+.kd-prose ol {
+	padding-inline-start: var(--kd-ref-space-6);
+}
+
+.kd-prose li + li {
+	margin-block-start: var(--kd-ref-space-2);
+}
+
+.kd-prose blockquote {
+	padding-inline-start: var(--kd-ref-space-6);
+	border-inline-start: var(--kd-ref-border-width-thick) solid var(--kd-sys-color-border-accent);
+	font-size: var(--kd-sys-text-lead-size);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-sys-color-fg-muted);
+}
+
+.kd-prose code {
+	font-family: var(--kd-ref-font-family-mono);
+	font-size: 0.9em;
+	padding: 0.1em 0.35em;
+	border-radius: var(--kd-ref-radius-sm);
+	background-color: var(--kd-sys-color-bg-muted);
+}

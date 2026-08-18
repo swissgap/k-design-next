@@ -1,0 +1,118 @@
+/* ==========================================================================
+   Links
+   Rot ist Linkfarbe. Unterstreichung wächst beim Hover von links auf —
+   im Fliesstext bleibt sie dauerhaft sichtbar, weil Farbe allein kein
+   zulässiges Unterscheidungsmerkmal ist (WCAG 1.4.1).
+   ========================================================================== */
+
+a {
+	color: var(--kd-sys-color-link-default);
+	text-decoration-thickness: from-font;
+	text-underline-offset: 0.18em;
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+a:hover {
+	color: var(--kd-sys-color-link-hover);
+}
+
+.kd-prose a:not([class]) {
+	text-decoration: underline;
+}
+
+.kd-link {
+	display: inline;
+	color: var(--kd-sys-color-link-default);
+	background-image: linear-gradient(currentColor, currentColor);
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 100% var(--kd-ref-border-width-hair);
+	text-decoration: none;
+	transition:
+		background-size var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-link:hover {
+		color: var(--kd-sys-color-link-hover);
+		background-size: 100% var(--kd-ref-border-width-thin);
+	}
+}
+
+.kd-link:visited {
+	color: var(--kd-sys-color-link-visited);
+}
+
+/* Aktionslink mit Pfeil. */
+.kd-link-action {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	color: var(--kd-sys-color-link-default);
+	font-weight: var(--kd-ref-font-weight-bold);
+	text-decoration: none;
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-link-action__icon {
+	flex: none;
+	inline-size: 1.1em;
+	block-size: 1.1em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-link-action:hover {
+		color: var(--kd-sys-color-link-hover);
+	}
+
+	.kd-link-action:hover .kd-link-action__icon {
+		transform: translateX(var(--kd-cmp-button-icon-shift));
+	}
+}
+
+.kd-link-action:focus-visible .kd-link-action__icon {
+	transform: translateX(var(--kd-cmp-button-icon-shift));
+}
+
+/* Auf dunklem Grund. */
+.kd-link--negative {
+	color: var(--kd-sys-color-link-inverse);
+}
+
+.kd-link--negative:hover,
+.kd-link--negative:visited {
+	color: var(--kd-sys-color-link-inverse-hover);
+}
+
+/* Externer Link — Icon wird an den Text gehängt. */
+.kd-link--external::after {
+	content: '';
+	display: inline-block;
+	inline-size: 0.75em;
+	block-size: 0.75em;
+	margin-inline-start: 0.35em;
+	background-color: currentColor;
+	mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M7 17 17 7M9 7h8v8'/%3E%3C/svg%3E");
+	mask-repeat: no-repeat;
+	mask-size: contain;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-link--external:hover::after {
+		transform: translate(0.15em, -0.15em);
+	}
+}
+
+/* Ganze Karte klickbar machen, ohne die Semantik zu verlieren. */
+.kd-stretched::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: 1;
+}

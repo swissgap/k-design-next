@@ -1,0 +1,47 @@
+{
+  "$description": "Skin-Overrides. Ein Skin verschiebt ausschliesslich die brand.*-Aliase der Referenzschicht. Die gesamte semantische Schicht bleibt unverändert — das ist die Umschaltmechanik des swiss/designsystem, nur formalisiert.",
+  "intranet": {
+    "$selector": ".kd-skin-intranet",
+    "$description": "Interne Bundesanwendungen — Blau statt Bundesrot",
+    "brand": {
+      "primary": {
+        "50":  { "$value": "{palette.blue.50}",  "$type": "color" },
+        "100": { "$value": "{palette.blue.100}", "$type": "color" },
+        "200": { "$value": "{palette.blue.200}", "$type": "color" },
+        "300": { "$value": "{palette.blue.300}", "$type": "color" },
+        "400": { "$value": "{palette.blue.400}", "$type": "color" },
+        "500": { "$value": "{palette.blue.500}", "$type": "color" },
+        "600": { "$value": "{palette.blue.600}", "$type": "color" },
+        "700": { "$value": "{palette.blue.700}", "$type": "color" },
+        "800": { "$value": "{palette.blue.800}", "$type": "color" },
+        "900": { "$value": "{palette.blue.900}", "$type": "color" }
+      },
+      "secondary": {
+        "400": { "$value": "#5076b3", "$type": "color" },
+        "500": { "$value": "#234dc2", "$type": "color" },
+        "600": { "$value": "#1e40af", "$type": "color" },
+        "700": { "$value": "#1e3a8a", "$type": "color" },
+        "800": { "$value": "#1c3c7d", "$type": "color" },
+        "900": { "$value": "#16305f", "$type": "color" }
+      }
+    }
+  },
+  "freebrand": {
+    "$selector": ".kd-skin-freebrand",
+    "$description": "Kampagnen und Portale ohne Wappen — Grün",
+    "brand": {
+      "primary": {
+        "50":  { "$value": "{palette.moss.50}",  "$type": "color" },
+        "100": { "$value": "{palette.moss.100}", "$type": "color" },
+        "200": { "$value": "{palette.moss.200}", "$type": "color" },
+        "300": { "$value": "{palette.moss.300}", "$type": "color" },
+        "400": { "$value": "{palette.moss.400}", "$type": "color" },
+        "500": { "$value": "{palette.moss.500}", "$type": "color" },
+        "600": { "$value": "{palette.moss.600}", "$type": "color" },
+        "700": { "$value": "{palette.moss.700}", "$type": "color" },
+        "800": { "$value": "{palette.moss.800}", "$type": "color" },
+        "900": { "$value": "{palette.moss.900}", "$type": "color" }
+      }
+    }
+  }
+}

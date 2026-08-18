@@ -1,0 +1,175 @@
+/* ==========================================================================
+   Formulare
+   Label immer über dem Feld, Fehlertext programmatisch verknüpft.
+   Der Hover verstärkt den Rand, der Fokus färbt ihn — zwei getrennte
+   Signale, damit Zeiger- und Tastaturbedienung unterscheidbar bleiben.
+   ========================================================================== */
+
+.kd-field {
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-2);
+}
+
+.kd-label {
+	font-size: var(--kd-ref-font-size-sm);
+	font-weight: var(--kd-ref-font-weight-bold);
+	color: var(--kd-sys-color-fg-default);
+}
+
+.kd-hint {
+	font-size: var(--kd-sys-text-caption-size);
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+.kd-error {
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	font-size: var(--kd-sys-text-caption-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	color: var(--kd-sys-color-status-danger-accent);
+}
+
+.kd-input,
+.kd-select,
+.kd-textarea {
+	inline-size: 100%;
+	min-block-size: var(--kd-cmp-field-min-height);
+	padding-inline: var(--kd-cmp-field-padding-inline);
+	padding-block: var(--kd-ref-space-2);
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-field-border-color);
+	border-radius: var(--kd-cmp-field-radius);
+	background-color: var(--kd-cmp-field-bg);
+	color: var(--kd-cmp-field-fg);
+	font-size: var(--kd-ref-font-size-md);
+	transition:
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		box-shadow var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-input::placeholder,
+.kd-textarea::placeholder {
+	color: var(--kd-cmp-field-placeholder);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-input:hover:not(:disabled),
+	.kd-select:hover:not(:disabled),
+	.kd-textarea:hover:not(:disabled) {
+		border-color: var(--kd-cmp-field-border-hover);
+	}
+}
+
+.kd-input:focus,
+.kd-select:focus,
+.kd-textarea:focus {
+	border-color: var(--kd-cmp-field-border-focus);
+	box-shadow: inset 0 0 0 1px var(--kd-cmp-field-border-focus);
+}
+
+.kd-input:disabled,
+.kd-select:disabled,
+.kd-textarea:disabled {
+	background-color: var(--kd-sys-color-bg-disabled);
+	border-color: var(--kd-sys-color-border-disabled);
+	color: var(--kd-sys-color-fg-disabled);
+	cursor: not-allowed;
+}
+
+.kd-input[aria-invalid='true'],
+.kd-select[aria-invalid='true'],
+.kd-textarea[aria-invalid='true'] {
+	border-color: var(--kd-sys-color-status-danger-accent);
+}
+
+.kd-textarea {
+	min-block-size: 8rem;
+	resize: vertical;
+	line-height: var(--kd-ref-font-leading-normal);
+}
+
+.kd-select {
+	appearance: none;
+	padding-inline-end: var(--kd-ref-space-10);
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+	background-repeat: no-repeat;
+	background-position: right var(--kd-ref-space-3) center;
+	background-size: 1.15rem;
+}
+
+/* Suchfeld mit vorangestelltem Icon. */
+.kd-search {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+
+.kd-search__icon {
+	position: absolute;
+	inset-inline-start: var(--kd-ref-space-3);
+	inline-size: 1.25rem;
+	block-size: 1.25rem;
+	pointer-events: none;
+	fill: none;
+	stroke: var(--kd-sys-color-fg-subtle);
+	stroke-width: 2;
+	transition: stroke var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-search .kd-input {
+	padding-inline-start: var(--kd-ref-space-10);
+}
+
+.kd-search:focus-within .kd-search__icon {
+	stroke: var(--kd-sys-color-fg-accent);
+}
+
+/* Auswahlfelder: eigene Darstellung, damit Kontrast und Grösse stimmen. */
+.kd-choice {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--kd-ref-space-3);
+	padding-block: var(--kd-ref-space-1);
+	cursor: pointer;
+}
+
+.kd-choice input[type='checkbox'],
+.kd-choice input[type='radio'] {
+	flex: none;
+	inline-size: 1.35rem;
+	block-size: 1.35rem;
+	margin: 0.1rem 0 0;
+	accent-color: var(--kd-sys-color-bg-accent);
+	cursor: pointer;
+}
+
+.kd-choice__label {
+	line-height: var(--kd-ref-font-leading-snug);
+}
+
+/* Fieldset ohne Browser-Grundrahmen. */
+.kd-fieldset {
+	border: 0;
+	padding: 0;
+	margin: 0;
+}
+
+.kd-fieldset > legend {
+	padding: 0;
+	margin-block-end: var(--kd-ref-space-3);
+	font-weight: var(--kd-ref-font-weight-bold);
+}
+
+/* Formularraster. */
+.kd-form-grid {
+	display: grid;
+	gap: var(--kd-ref-space-5);
+}
+
+@media (min-width: 768px) {
+	.kd-form-grid--2 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+}

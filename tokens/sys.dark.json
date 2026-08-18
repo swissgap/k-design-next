@@ -1,0 +1,91 @@
+{
+  "$description": "Tier 2 — Modus 'dark'. Enthält ausschliesslich Überschreibungen von sys.light; alles Nicht-Genannte wird geerbt.",
+  "$mode": "dark",
+  "color": {
+    "bg": {
+      "canvas":         { "$value": "{brand.secondary.900}", "$type": "color" },
+      "subtle":         { "$value": "{brand.secondary.800}", "$type": "color" },
+      "muted":          { "$value": "{brand.secondary.700}", "$type": "color" },
+      "surface":        { "$value": "{brand.secondary.800}", "$type": "color" },
+      "surface-raised": { "$value": "{brand.secondary.700}", "$type": "color" },
+      "surface-sunken": { "$value": "{palette.neutral.1000}","$type": "color" },
+      "inverse":        { "$value": "{brand.secondary.800}", "$type": "color", "$description": "Das dunkle Band bleibt in beiden Themes dunkel — es ist ein Gestaltungsmerkmal des CD Bund, keine Umkehrung des Kontrasts." },
+      "inverse-strong": { "$value": "{brand.secondary.900}", "$type": "color" },
+      "inverse-subtle": { "$value": "{brand.secondary.700}", "$type": "color" },
+      "accent":         { "$value": "{brand.primary.500}",   "$type": "color" },
+      "accent-subtle":  { "$value": "rgba(216, 35, 42, 0.16)","$type": "color" },
+      "scrim":          { "$value": "rgba(0, 0, 0, 0.72)",   "$type": "color" },
+      "hover":          { "$value": "rgba(255, 255, 255, 0.07)", "$type": "color" },
+      "pressed":        { "$value": "rgba(255, 255, 255, 0.12)", "$type": "color" },
+      "selected":       { "$value": "rgba(252, 101, 107, 0.16)", "$type": "color" },
+      "disabled":       { "$value": "{brand.secondary.700}", "$type": "color" }
+    },
+    "fg": {
+      "default":       { "$value": "{palette.neutral.100}",  "$type": "color" },
+      "strong":        { "$value": "{palette.neutral.0}",    "$type": "color" },
+      "muted":         { "$value": "{brand.secondary.200}",  "$type": "color" },
+      "subtle":        { "$value": "{brand.secondary.300}",  "$type": "color" },
+      "inverse":       { "$value": "{palette.neutral.0}",    "$type": "color" },
+      "inverse-muted": { "$value": "{brand.secondary.200}",  "$type": "color" },
+      "accent":        { "$value": "{brand.primary.400}",    "$type": "color" },
+      "accent-strong": { "$value": "{brand.primary.300}",    "$type": "color" },
+      "on-accent":     { "$value": "{palette.neutral.0}",    "$type": "color" },
+      "disabled":      { "$value": "{brand.secondary.400}",  "$type": "color" }
+    },
+    "border": {
+      "subtle":  { "$value": "rgba(255,255,255,0.10)", "$type": "color" },
+      "default": { "$value": "rgba(255,255,255,0.18)", "$type": "color" },
+      "strong":  { "$value": "rgba(255,255,255,0.34)", "$type": "color" },
+      "interactive": { "$value": "{brand.secondary.300}", "$type": "color" },
+      "accent":  { "$value": "{brand.primary.400}",    "$type": "color" },
+      "inverse": { "$value": "rgba(255,255,255,0.18)", "$type": "color" },
+      "disabled":{ "$value": "rgba(255,255,255,0.12)", "$type": "color" }
+    },
+    "link": {
+      "default":       { "$value": "{brand.primary.400}",   "$type": "color" },
+      "hover":         { "$value": "{brand.primary.300}",   "$type": "color" },
+      "visited":       { "$value": "{palette.violet.400}",  "$type": "color" },
+      "inverse":       { "$value": "{palette.neutral.0}",   "$type": "color" },
+      "inverse-hover": { "$value": "{brand.secondary.100}", "$type": "color" }
+    },
+    "action": {
+      "primary-bg":         { "$value": "{brand.secondary.200}", "$type": "color", "$description": "Im dunklen Theme kehrt sich die gefüllte Aktion um: helle Fläche, dunkle Schrift — nur so bleibt die Beschriftung über 4.5:1." },
+      "primary-bg-hover":   { "$value": "{brand.secondary.100}", "$type": "color" },
+      "primary-bg-pressed": { "$value": "{brand.secondary.300}", "$type": "color" },
+      "primary-fg":         { "$value": "{brand.secondary.900}", "$type": "color" },
+      "secondary-fg":       { "$value": "{brand.primary.400}",   "$type": "color" },
+      "secondary-fg-hover": { "$value": "{brand.primary.300}",   "$type": "color" },
+      "secondary-border":   { "$value": "{brand.primary.400}",   "$type": "color" },
+      "secondary-bg-hover": { "$value": "rgba(252,101,107,0.14)","$type": "color" },
+      "tertiary-fg":        { "$value": "{palette.neutral.100}", "$type": "color" },
+      "tertiary-fg-hover":  { "$value": "{brand.primary.400}",   "$type": "color" },
+      "disabled-bg":        { "$value": "{brand.secondary.700}", "$type": "color" },
+      "disabled-fg":        { "$value": "{brand.secondary.400}", "$type": "color" }
+    },
+    "status": {
+      "info-bg":       { "$value": "rgba(37, 99, 235, 0.18)",  "$type": "color" },
+      "info-fg":       { "$value": "{palette.blue.200}",       "$type": "color" },
+      "info-accent":   { "$value": "{palette.blue.400}",       "$type": "color" },
+      "success-bg":    { "$value": "rgba(5, 150, 105, 0.18)",  "$type": "color" },
+      "success-fg":    { "$value": "{palette.green.200}",      "$type": "color" },
+      "success-accent":{ "$value": "{palette.green.400}",      "$type": "color" },
+      "warning-bg":    { "$value": "rgba(245, 158, 11, 0.18)", "$type": "color" },
+      "warning-fg":    { "$value": "{palette.amber.100}",      "$type": "color" },
+      "warning-accent":{ "$value": "{palette.amber.500}",      "$type": "color" },
+      "danger-bg":     { "$value": "rgba(216, 35, 42, 0.20)",  "$type": "color" },
+      "danger-fg":     { "$value": "{palette.red.200}",        "$type": "color" },
+      "danger-accent": { "$value": "{palette.red.400}",        "$type": "color" }
+    },
+    "focus": {
+      "ring":   { "$value": "{palette.violet.400}",  "$type": "color" },
+      "offset": { "$value": "{brand.secondary.900}", "$type": "color" }
+    }
+  },
+  "elevation": {
+    "flat":     { "$value": "none", "$type": "shadow" },
+    "raised":   { "$value": "0 1px 2px rgba(0,0,0,.4), 0 1px 5px rgba(0,0,0,.35)", "$type": "shadow" },
+    "floating": { "$value": "0 2px 6px -1px rgba(0,0,0,.5), 0 5px 20px -3px rgba(0,0,0,.45)", "$type": "shadow" },
+    "overlay":  { "$value": "0 6px 10px -5px rgba(0,0,0,.5), 0 15px 25px -3px rgba(0,0,0,.5)", "$type": "shadow" },
+    "modal":    { "$value": "0 10px 20px rgba(0,0,0,.5), 1px 10px 70px -8px rgba(0,0,0,.6)", "$type": "shadow" }
+  }
+}

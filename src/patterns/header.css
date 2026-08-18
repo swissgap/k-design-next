@@ -1,0 +1,288 @@
+/* ==========================================================================
+   Kopfbereich: Top-Bar, Header, Logo
+   Reihenfolge und Inhalte sind durch das CD Bund vorgegeben:
+   dunkle Top-Bar mit Sprachwechsler, darunter der weisse Header mit
+   Wappenschild, Wortmarke und Amtsname.
+   ========================================================================== */
+
+/* ---- Top-Bar ------------------------------------------------------------ */
+
+.kd-topbar {
+	background-color: var(--kd-cmp-topbar-bg);
+	color: var(--kd-cmp-topbar-fg);
+	font-size: var(--kd-cmp-topbar-font-size);
+}
+
+.kd-topbar__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-4);
+	min-block-size: var(--kd-cmp-topbar-height);
+	flex-wrap: wrap;
+}
+
+.kd-topbar__authorities {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	padding-inline: var(--kd-ref-space-2);
+	padding-block: var(--kd-ref-space-2);
+	margin-inline-start: calc(-1 * var(--kd-ref-space-2));
+	color: inherit;
+	background: none;
+	border: 0;
+	font-size: inherit;
+	white-space: nowrap;
+	cursor: pointer;
+	transition: opacity var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-topbar__authorities svg {
+	flex: none;
+	inline-size: 1rem;
+	block-size: 1rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2.5;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+.kd-topbar__authorities[aria-expanded='true'] svg {
+	transform: rotate(180deg);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-topbar__authorities:hover {
+		opacity: 0.82;
+	}
+}
+
+.kd-topbar__meta {
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-5);
+}
+
+/* Sprachwechsler — gehört in die Top-Bar, nicht in den weissen Header. */
+.kd-lang {
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-1);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kd-lang__link {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-inline-size: 2rem;
+	min-block-size: 2rem;
+	padding-inline: var(--kd-ref-space-2);
+	border-radius: var(--kd-ref-radius-sm);
+	color: inherit;
+	text-decoration: none;
+	text-transform: uppercase;
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		opacity var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-lang__link:hover {
+		background-color: rgba(255, 255, 255, 0.14);
+		color: inherit;
+	}
+}
+
+.kd-lang__link[aria-current='true'] {
+	font-weight: var(--kd-ref-font-weight-bold);
+	background-color: rgba(255, 255, 255, 0.18);
+	cursor: default;
+}
+
+/* Behördenschublade der Top-Bar. */
+.kd-topbar__drawer {
+	background-color: var(--kd-sys-color-bg-inverse-strong);
+	color: var(--kd-sys-color-fg-inverse);
+	border-block-start: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-inverse);
+}
+
+.kd-topbar__drawer[hidden] {
+	display: none;
+}
+
+.kd-topbar__drawer-inner {
+	padding-block: var(--kd-ref-space-8);
+	display: grid;
+	gap: var(--kd-ref-space-6);
+}
+
+@media (min-width: 768px) {
+	.kd-topbar__drawer-inner {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+}
+
+.kd-topbar__drawer a {
+	color: var(--kd-sys-color-fg-inverse);
+	text-decoration: none;
+}
+
+/* ---- Header ------------------------------------------------------------- */
+
+.kd-header {
+	position: relative;
+	z-index: var(--kd-ref-layer-header);
+	background-color: var(--kd-cmp-header-bg);
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-cmp-header-border-color);
+}
+
+.kd-header__inner {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-6);
+	padding-block: var(--kd-cmp-header-padding-block);
+}
+
+.kd-header__actions {
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-3);
+}
+
+/* Klebt beim Scrollen — nur die Navigationszeile, nicht der ganze Kopf. */
+.kd-header--sticky {
+	position: sticky;
+	inset-block-start: 0;
+}
+
+/* ---- Logo --------------------------------------------------------------- */
+
+.kd-logo {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-4);
+	color: var(--kd-sys-color-fg-default);
+	text-decoration: none;
+}
+
+.kd-logo__shield {
+	flex: none;
+	inline-size: 2.05rem;
+	block-size: 2.25rem;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+@media (min-width: 1920px) {
+	.kd-logo__shield {
+		inline-size: 2.5rem;
+		block-size: 2.75rem;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-logo:hover .kd-logo__shield {
+		transform: scale(1.06);
+	}
+}
+
+.kd-logo__wordmark {
+	display: block;
+	font-size: var(--kd-ref-font-size-3xs);
+	line-height: 1.32;
+	color: var(--kd-sys-color-fg-default);
+	white-space: nowrap;
+}
+
+.kd-logo__office {
+	display: block;
+	margin-block-start: 0.15rem;
+	font-size: var(--kd-ref-font-size-sm);
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-ref-font-leading-tight);
+	color: var(--kd-sys-color-fg-strong);
+}
+
+/* Auf schmalen Geräten weicht die vierzeilige Wortmarke der Amtsbezeichnung. */
+@media (max-width: 639px) {
+	.kd-logo__wordmark {
+		font-size: 0.625rem;
+		line-height: 1.25;
+	}
+}
+
+/* Trennlinie zwischen Wappen und Wortmarke ab mittlerer Breite. */
+@media (min-width: 768px) {
+	.kd-logo__text {
+		padding-inline-start: var(--kd-ref-space-4);
+		border-inline-start: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+	}
+}
+
+/* ---- Burger ------------------------------------------------------------- */
+
+.kd-burger {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: 2.75rem;
+	block-size: 2.75rem;
+	border-radius: var(--kd-ref-radius-sm);
+	color: var(--kd-sys-color-fg-default);
+	transition: background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-burger:hover {
+		background-color: var(--kd-sys-color-bg-hover);
+	}
+}
+
+.kd-burger__box {
+	position: relative;
+	inline-size: 1.5rem;
+	block-size: 1rem;
+}
+
+.kd-burger__bar {
+	position: absolute;
+	inset-inline: 0;
+	block-size: 2px;
+	background-color: currentColor;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis),
+		opacity var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-burger__bar:nth-child(1) {
+	inset-block-start: 0;
+}
+
+.kd-burger__bar:nth-child(2) {
+	inset-block-start: calc(50% - 1px);
+}
+
+.kd-burger__bar:nth-child(3) {
+	inset-block-end: 0;
+}
+
+.kd-burger[aria-expanded='true'] .kd-burger__bar:nth-child(1) {
+	transform: translateY(calc(50% + 6px)) rotate(45deg);
+}
+
+.kd-burger[aria-expanded='true'] .kd-burger__bar:nth-child(2) {
+	opacity: 0;
+}
+
+.kd-burger[aria-expanded='true'] .kd-burger__bar:nth-child(3) {
+	transform: translateY(calc(-50% - 6px)) rotate(-45deg);
+}
+
+@media (min-width: 1024px) {
+	.kd-burger {
+		display: none;
+	}
+}

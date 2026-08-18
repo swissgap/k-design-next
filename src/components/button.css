@@ -1,0 +1,256 @@
+/* ==========================================================================
+   Button
+   Varianten und Farbrollen nach CD Bund: die gefüllte Primäraktion ist
+   blaugrau, Rot bleibt Akzent- und Linkfarbe. Die Mouseover-Reaktion ist
+   eine einfahrende Fläche plus Schattenwechsel — kein Farbsprung.
+   ========================================================================== */
+
+.kd-btn {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: var(--kd-ref-space-2);
+	min-block-size: var(--kd-cmp-button-min-height);
+	padding-inline: var(--kd-cmp-button-padding-inline);
+	padding-block: var(--kd-ref-space-2);
+	border: var(--kd-cmp-button-border-width) solid transparent;
+	border-radius: var(--kd-cmp-button-radius);
+	font-size: var(--kd-ref-font-size-md);
+	font-weight: var(--kd-ref-font-weight-regular);
+	line-height: var(--kd-ref-font-leading-tight);
+	text-align: center;
+	text-decoration: none;
+	overflow-wrap: anywhere;
+	isolation: isolate;
+	overflow: hidden;
+	cursor: pointer;
+	transition:
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		box-shadow var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		transform var(--kd-ref-motion-duration-fast) var(--kd-sys-motion-transition-easing);
+}
+
+/* Die einfahrende Fläche. */
+.kd-btn::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	background-color: var(--kd-btn-sweep, transparent);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn:hover:not(:disabled):not([aria-disabled='true'])::before {
+		transform: scaleX(1);
+	}
+}
+
+.kd-btn:active:not(:disabled) {
+	transform: scale(var(--kd-sys-motion-press-scale));
+}
+
+.kd-btn:disabled,
+.kd-btn[aria-disabled='true'] {
+	cursor: not-allowed;
+	box-shadow: none;
+}
+
+.kd-btn:disabled::before,
+.kd-btn[aria-disabled='true']::before {
+	display: none;
+}
+
+.kd-btn__icon {
+	flex: none;
+	inline-size: 1.25em;
+	block-size: 1.25em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn:hover .kd-btn__icon {
+		transform: translateX(var(--kd-cmp-button-icon-shift));
+	}
+
+	.kd-btn--icon-start:hover .kd-btn__icon {
+		transform: translateX(calc(-1 * var(--kd-cmp-button-icon-shift)));
+	}
+}
+
+.kd-btn--icon-start {
+	flex-direction: row-reverse;
+}
+
+.kd-btn--icon-only {
+	padding-inline: 0;
+	inline-size: var(--kd-cmp-button-min-height);
+}
+
+/* ---- Varianten ---------------------------------------------------------- */
+
+.kd-btn--filled {
+	--kd-btn-sweep: var(--kd-sys-color-action-primary-bg-hover);
+	background-color: var(--kd-sys-color-action-primary-bg);
+	border-color: var(--kd-sys-color-action-primary-bg);
+	color: var(--kd-sys-color-action-primary-fg);
+	font-weight: var(--kd-cmp-button-font-weight);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--filled:hover:not(:disabled) {
+		border-color: var(--kd-sys-color-action-primary-bg-hover);
+		box-shadow: var(--kd-cmp-button-shadow-hover);
+	}
+}
+
+.kd-btn--filled:active:not(:disabled) {
+	background-color: var(--kd-sys-color-action-primary-bg-pressed);
+}
+
+.kd-btn--filled:disabled,
+.kd-btn--filled[aria-disabled='true'] {
+	background-color: var(--kd-sys-color-action-disabled-bg);
+	border-color: var(--kd-sys-color-action-disabled-bg);
+	color: var(--kd-sys-color-action-disabled-fg);
+}
+
+.kd-btn--outline {
+	--kd-btn-sweep: var(--kd-sys-color-action-secondary-bg-hover);
+	border-color: var(--kd-sys-color-action-secondary-border);
+	color: var(--kd-sys-color-action-secondary-fg);
+	background-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--outline:hover:not(:disabled) {
+		border-color: var(--kd-sys-color-action-secondary-fg-hover);
+		color: var(--kd-sys-color-action-secondary-fg-hover);
+	}
+}
+
+.kd-btn--outline:disabled,
+.kd-btn--outline[aria-disabled='true'] {
+	border-color: var(--kd-sys-color-border-disabled);
+	color: var(--kd-sys-color-fg-disabled);
+}
+
+.kd-btn--ghost {
+	--kd-btn-sweep: var(--kd-sys-color-bg-hover);
+	padding-inline: var(--kd-ref-space-3);
+	color: var(--kd-sys-color-action-tertiary-fg);
+	background-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--ghost:hover:not(:disabled) {
+		color: var(--kd-sys-color-action-tertiary-fg-hover);
+	}
+}
+
+.kd-btn--ghost:disabled,
+.kd-btn--ghost[aria-disabled='true'] {
+	color: var(--kd-sys-color-fg-disabled);
+}
+
+/* Textlink mit Pfeil — die „Mehr erfahren"-Aktion des Systems. */
+.kd-btn--link {
+	min-block-size: 0;
+	padding: 0;
+	border: 0;
+	overflow: visible;
+	color: var(--kd-sys-color-link-default);
+	background: none;
+	text-align: start;
+}
+
+.kd-btn--link::before {
+	display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--link:hover:not(:disabled) {
+		color: var(--kd-sys-color-link-hover);
+	}
+}
+
+.kd-btn--link:disabled,
+.kd-btn--link[aria-disabled='true'] {
+	color: var(--kd-sys-color-fg-disabled);
+}
+
+/* Auf dunklem Grund. */
+.kd-btn--negative {
+	--kd-btn-sweep: var(--kd-sys-color-fg-inverse);
+	border-color: var(--kd-sys-color-fg-inverse);
+	color: var(--kd-sys-color-fg-inverse);
+	font-weight: var(--kd-cmp-button-font-weight);
+	background-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--negative:hover:not(:disabled) {
+		color: var(--kd-sys-color-bg-inverse-strong);
+	}
+}
+
+.kd-btn--negative[aria-pressed='true'] {
+	background-color: var(--kd-sys-color-fg-inverse);
+	color: var(--kd-sys-color-bg-inverse-strong);
+}
+
+.kd-btn--negative-filled {
+	--kd-btn-sweep: var(--kd-sys-color-bg-accent);
+	background-color: var(--kd-sys-color-fg-inverse);
+	border-color: var(--kd-sys-color-fg-inverse);
+	color: var(--kd-sys-color-bg-inverse-strong);
+	font-weight: var(--kd-cmp-button-font-weight);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-btn--negative-filled:hover:not(:disabled) {
+		color: var(--kd-sys-color-fg-on-accent);
+		border-color: var(--kd-sys-color-bg-accent);
+		box-shadow: var(--kd-cmp-button-shadow-hover);
+	}
+}
+
+/* ---- Grössen ------------------------------------------------------------ */
+
+.kd-btn--sm {
+	min-block-size: var(--kd-cmp-button-min-height-sm);
+	padding-inline: var(--kd-cmp-button-padding-inline-sm);
+	font-size: var(--kd-ref-font-size-sm);
+}
+
+.kd-btn--sm.kd-btn--icon-only {
+	inline-size: var(--kd-cmp-button-min-height-sm);
+	padding-inline: 0;
+}
+
+.kd-btn--lg {
+	min-block-size: var(--kd-cmp-button-min-height-lg);
+	padding-inline: var(--kd-cmp-button-padding-inline-lg);
+	font-size: var(--kd-ref-font-size-lg);
+}
+
+.kd-btn--block {
+	display: flex;
+	inline-size: 100%;
+}
+
+/* Gruppe: Buttons mit gemeinsamer Grundlinie. */
+.kd-btn-group {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--kd-ref-space-3);
+}

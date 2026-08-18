@@ -1,0 +1,7 @@
+node_modules/
+.DS_Store
+*.log
+
+# Build-Ergebnisse. Reproduzierbar mit `npm run build`, ohne Abhängigkeiten.
+dist/
+docs/TOKENS.md
