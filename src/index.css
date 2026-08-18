@@ -1,0 +1,42 @@
+/**
+ * k-design-next
+ * Design System auf Basis der Vorgaben der Bundeskanzlei.
+ *
+ * Reihenfolge ist bedeutsam: Tokens zuerst, dann Grundlagen, Layout,
+ * Bewegung, Komponenten, Seitenbausteine, zuletzt Hilfsklassen.
+ * Wer einzelne Teile ersetzen will, tauscht die entsprechende @import-Zeile.
+ */
+
+/* 0 · Tokens (generiert aus tokens/*.json) */
+@import '../dist/tokens/kd-tokens.css';
+
+/* 1 · Grundlagen */
+@import './base/reset.css';
+@import './base/typography.css';
+@import './base/a11y.css';
+
+/* 2 · Layout */
+@import './layout/container.css';
+@import './layout/grid.css';
+@import './layout/section.css';
+
+/* 3 · Bewegung und Interaktion */
+@import './motion/motion.css';
+
+/* 4 · Komponenten */
+@import './components/button.css';
+@import './components/link.css';
+@import './components/card.css';
+@import './components/form.css';
+@import './components/feedback.css';
+@import './components/disclosure.css';
+@import './components/swatch.css';
+
+/* 5 · Seitenbausteine */
+@import './patterns/header.css';
+@import './patterns/nav.css';
+@import './patterns/hero.css';
+@import './patterns/footer.css';
+
+/* 6 · Hilfsklassen */
+@import './base/utilities.css';

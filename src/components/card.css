@@ -1,0 +1,267 @@
+/* ==========================================================================
+   Karte
+   Grundbaustein für Teaser, Themen und Werkzeuge. Die Hover-Reaktion
+   besteht aus vier abgestimmten Teilen: Anheben, Schatten, einfahrende
+   Akzentkante und ein dem Zeiger folgender Lichtschein.
+   ========================================================================== */
+
+.kd-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	block-size: 100%;
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-card-border-color);
+	border-radius: var(--kd-cmp-card-radius);
+	background-color: var(--kd-cmp-card-bg);
+	container-type: inline-size;
+	isolation: isolate;
+	overflow: hidden;
+}
+
+.kd-card__media {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: var(--kd-cmp-card-media-ratio);
+	background-color: var(--kd-sys-color-bg-muted);
+	flex: none;
+}
+
+.kd-card__media img,
+.kd-card__media > svg {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+	transition: transform var(--kd-ref-motion-duration-slower) var(--kd-sys-motion-transition-easing);
+}
+
+.kd-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-3);
+	padding: var(--kd-cmp-card-padding);
+	flex: 1 1 auto;
+}
+
+.kd-card__eyebrow {
+	font-size: var(--kd-sys-text-overline-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	letter-spacing: var(--kd-ref-font-tracking-wide);
+	text-transform: uppercase;
+	color: var(--kd-sys-color-fg-accent);
+}
+
+.kd-card__title {
+	font-size: var(--kd-sys-text-h4-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-sys-color-fg-strong);
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+.kd-card__title a {
+	color: inherit;
+	text-decoration: none;
+}
+
+.kd-card__text {
+	color: var(--kd-sys-color-fg-muted);
+	text-wrap: pretty;
+}
+
+.kd-card__meta {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--kd-ref-space-2) var(--kd-ref-space-4);
+	font-size: var(--kd-sys-text-caption-size);
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+.kd-card__footer {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-3);
+	padding: 0 var(--kd-cmp-card-padding) var(--kd-cmp-card-padding);
+	margin-block-start: auto;
+}
+
+.kd-card__icon {
+	display: grid;
+	place-items: center;
+	inline-size: 3rem;
+	block-size: 3rem;
+	border-radius: var(--kd-ref-radius-md);
+	background-color: var(--kd-sys-color-bg-accent-subtle);
+	color: var(--kd-sys-color-fg-accent);
+	transition:
+		background-color var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		color var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+.kd-card__icon svg {
+	inline-size: 1.5rem;
+	block-size: 1.5rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.75;
+}
+
+/* ---- Interaktive Karte -------------------------------------------------- */
+
+.kd-card--interactive {
+	cursor: pointer;
+	box-shadow: var(--kd-cmp-card-shadow);
+	transition:
+		transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		box-shadow var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		border-color var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+/* Lichtschein an der Zeigerposition. */
+.kd-card--interactive::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+	background: radial-gradient(
+		var(--kd-cmp-card-spotlight-size) circle at var(--kd-pointer-x) var(--kd-pointer-y),
+		var(--kd-sys-color-bg-accent-subtle),
+		transparent 70%
+	);
+}
+
+/* Akzentkante, fährt von links ein. */
+.kd-card--interactive::after {
+	content: '';
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline-start: 0;
+	inline-size: 100%;
+	block-size: var(--kd-cmp-card-accent-bar);
+	background-color: var(--kd-sys-color-bg-accent);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+	z-index: 2;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-card--interactive:hover,
+	.kd-card--interactive:focus-within {
+		transform: translate3d(0, var(--kd-sys-motion-lift-distance), 0);
+		box-shadow: var(--kd-cmp-card-shadow-hover);
+		border-color: transparent;
+	}
+
+	.kd-card--interactive:hover::before,
+	.kd-card--interactive:focus-within::before {
+		opacity: 1;
+	}
+
+	.kd-card--interactive:hover::after,
+	.kd-card--interactive:focus-within::after {
+		transform: scaleX(1);
+	}
+
+	.kd-card--interactive:hover .kd-card__media img,
+	.kd-card--interactive:focus-within .kd-card__media img {
+		transform: scale(1.05);
+	}
+
+	.kd-card--interactive:hover .kd-card__title,
+	.kd-card--interactive:focus-within .kd-card__title {
+		color: var(--kd-sys-color-fg-accent);
+	}
+
+	.kd-card--interactive:hover .kd-card__icon,
+	.kd-card--interactive:focus-within .kd-card__icon {
+		background-color: var(--kd-sys-color-bg-accent);
+		color: var(--kd-sys-color-fg-on-accent);
+		transform: translateY(-2px);
+	}
+
+	.kd-card--interactive:hover .kd-link-action__icon,
+	.kd-card--interactive:focus-within .kd-link-action__icon {
+		transform: translateX(var(--kd-cmp-button-icon-shift));
+	}
+}
+
+/* Tastatur: der Fokusring liegt auf der Karte, nicht nur auf dem Link. */
+.kd-card--interactive:focus-within {
+	outline: var(--kd-sys-focus-ring-width) solid var(--kd-sys-color-focus-ring);
+	outline-offset: var(--kd-sys-focus-ring-offset);
+}
+
+.kd-card--interactive:focus-within .kd-stretched:focus-visible {
+	outline: none;
+}
+
+/* ---- Varianten ---------------------------------------------------------- */
+
+.kd-card--flat {
+	border: 0;
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+	border-radius: 0;
+	background-color: transparent;
+	box-shadow: none;
+}
+
+.kd-card--flat.kd-card--interactive:hover {
+	transform: none;
+	box-shadow: none;
+	background-color: var(--kd-sys-color-bg-hover);
+}
+
+.kd-card--flat .kd-card__body {
+	padding-inline: 0;
+}
+
+.kd-card--flat .kd-card__footer {
+	padding-inline: 0;
+}
+
+.kd-card--outline {
+	box-shadow: none;
+	border-color: var(--kd-sys-color-border-default);
+}
+
+.kd-card--inverse {
+	--kd-cmp-card-bg: var(--kd-sys-color-bg-inverse-subtle);
+	border-color: var(--kd-sys-color-border-inverse);
+	color: var(--kd-sys-color-fg-inverse);
+}
+
+.kd-card--inverse .kd-card__title {
+	color: var(--kd-sys-color-fg-inverse);
+}
+
+.kd-card--inverse .kd-card__text {
+	color: var(--kd-sys-color-fg-inverse-muted);
+}
+
+/* Horizontal ab mittlerer Breite — nutzt Container Queries, nicht den Viewport. */
+@container (min-width: 34rem) {
+	.kd-card--horizontal {
+		flex-direction: row;
+	}
+
+	.kd-card--horizontal .kd-card__media {
+		inline-size: 38%;
+		aspect-ratio: auto;
+	}
+}
+
+/* Hervorgehobene Karte für die wichtigste Kachel eines Rasters. */
+.kd-card--feature {
+	--kd-cmp-card-padding: var(--kd-cmp-card-padding-lg);
+}
+
+.kd-card--feature .kd-card__title {
+	font-size: var(--kd-sys-text-h3-size);
+}

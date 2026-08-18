@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Reset
+   Zurückhaltend gehalten: nur was für vorhersehbares Verhalten nötig ist.
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+* {
+	margin: 0;
+}
+
+html {
+	-webkit-text-size-adjust: 100%;
+	text-size-adjust: 100%;
+	tab-size: 4;
+}
+
+/* Sanftes Scrollen nur, wenn der Nutzer keine Bewegungsreduktion verlangt. */
+@media (prefers-reduced-motion: no-preference) {
+	html:focus-within {
+		scroll-behavior: smooth;
+	}
+}
+
+body {
+	min-height: 100svh;
+	background-color: var(--kd-sys-color-bg-canvas);
+	color: var(--kd-sys-color-fg-default);
+	font-family: var(--kd-ref-font-family-sans);
+	font-size: var(--kd-sys-text-body-size);
+	font-weight: var(--kd-ref-font-weight-regular);
+	line-height: var(--kd-ref-font-leading-normal);
+	word-spacing: 0.0625em;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+	transition:
+		background-color var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		color var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+img,
+video {
+	height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	background: none;
+	border: 0;
+	cursor: pointer;
+}
+
+button:disabled {
+	cursor: not-allowed;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	overflow-wrap: break-word;
+}
+
+ul[class],
+ol[class] {
+	list-style: none;
+	padding: 0;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+hr {
+	border: 0;
+	border-top: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+}
+
+:target {
+	scroll-margin-block-start: var(--kd-ref-space-20);
+}
+
+[hidden] {
+	display: none !important;
+}

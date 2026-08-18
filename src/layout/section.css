@@ -1,0 +1,106 @@
+/* ==========================================================================
+   Sektionen
+   Vertikaler Rhythmus einer Seite. Eine Sektion trägt ihre Farbe selbst,
+   damit dunkle und helle Bänder ohne Zusatzklassen wechseln können.
+   ========================================================================== */
+
+.kd-section {
+	padding-block: var(--kd-sys-layout-section-py);
+	background-color: var(--kd-section-bg, transparent);
+	color: var(--kd-section-fg, inherit);
+}
+
+@media (min-width: 1024px) {
+	.kd-section {
+		padding-block: var(--kd-sys-layout-section-py-lg);
+	}
+}
+
+@media (min-width: 1920px) {
+	.kd-section {
+		padding-block: var(--kd-ref-space-32);
+	}
+}
+
+.kd-section--tight {
+	padding-block: var(--kd-ref-space-10);
+}
+
+.kd-section--flush-top {
+	padding-block-start: 0;
+}
+
+.kd-section--flush-bottom {
+	padding-block-end: 0;
+}
+
+.kd-section--subtle {
+	--kd-section-bg: var(--kd-sys-color-bg-subtle);
+}
+
+.kd-section--sunken {
+	--kd-section-bg: var(--kd-sys-color-bg-surface-sunken);
+}
+
+/* Dunkles Band: setzt die semantischen Rollen lokal um, damit alle
+   Kindkomponenten ohne eigene Modifier korrekt aussehen. */
+.kd-section--inverse {
+	--kd-section-bg: var(--kd-sys-color-bg-inverse);
+	--kd-section-fg: var(--kd-sys-color-fg-inverse);
+	--kd-sys-color-fg-default: var(--kd-sys-color-fg-inverse);
+	--kd-sys-color-fg-strong: var(--kd-sys-color-fg-inverse);
+	--kd-sys-color-fg-muted: var(--kd-sys-color-fg-inverse-muted);
+	--kd-sys-color-fg-subtle: var(--kd-sys-color-fg-inverse-muted);
+	--kd-sys-color-border-subtle: var(--kd-sys-color-border-inverse);
+	--kd-sys-color-border-default: var(--kd-sys-color-border-inverse);
+	--kd-sys-color-link-default: var(--kd-sys-color-link-inverse);
+	--kd-sys-color-link-hover: var(--kd-sys-color-link-inverse-hover);
+}
+
+/* Sektionskopf: Auszeichnungszeile, Titel, Lead und optionaler Aktionslink. */
+.kd-section__head {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-end;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-5);
+	margin-block-end: var(--kd-ref-space-10);
+}
+
+.kd-section__headline {
+	max-inline-size: 46rem;
+}
+
+.kd-section__headline > * + * {
+	margin-block-start: var(--kd-ref-space-4);
+}
+
+.kd-section__title {
+	font-size: var(--kd-sys-text-h2-size);
+}
+
+.kd-section__lead {
+	font-size: var(--kd-sys-text-lead-size);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-sys-color-fg-muted);
+	text-wrap: pretty;
+}
+
+/* Zentrierte Variante für Einstiegsseiten. */
+.kd-section--centered .kd-section__head {
+	justify-content: center;
+	text-align: center;
+}
+
+.kd-section--centered .kd-section__headline {
+	margin-inline: auto;
+}
+
+.kd-section--centered .kd-overline {
+	justify-content: center;
+}
+
+/* Feine Trennlinie zwischen gleichfarbigen Sektionen. */
+.kd-section--divided {
+	border-block-start: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-subtle);
+}

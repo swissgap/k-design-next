@@ -1,0 +1,183 @@
+/* ==========================================================================
+   Rückmeldungen: Badge, Tag, Meldung, Fortschritt
+   Statusfarben tragen immer zusätzlich ein Icon oder eine Textmarke —
+   Farbe allein ist kein Träger von Information.
+   ========================================================================== */
+
+.kd-badge {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-1);
+	padding-inline: var(--kd-cmp-badge-padding-inline);
+	padding-block: var(--kd-cmp-badge-padding-block);
+	border-radius: var(--kd-cmp-badge-radius);
+	background-color: var(--kd-sys-color-bg-muted);
+	color: var(--kd-sys-color-fg-muted);
+	font-size: var(--kd-cmp-badge-font-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	letter-spacing: var(--kd-ref-font-tracking-wide);
+	text-transform: uppercase;
+	white-space: nowrap;
+}
+
+.kd-badge--accent {
+	background-color: var(--kd-sys-color-bg-accent-subtle);
+	color: var(--kd-sys-color-fg-accent);
+}
+
+.kd-badge--info {
+	background-color: var(--kd-sys-color-status-info-bg);
+	color: var(--kd-sys-color-status-info-fg);
+}
+
+.kd-badge--success {
+	background-color: var(--kd-sys-color-status-success-bg);
+	color: var(--kd-sys-color-status-success-fg);
+}
+
+.kd-badge--warning {
+	background-color: var(--kd-sys-color-status-warning-bg);
+	color: var(--kd-sys-color-status-warning-fg);
+}
+
+.kd-badge--danger {
+	background-color: var(--kd-sys-color-status-danger-bg);
+	color: var(--kd-sys-color-status-danger-fg);
+}
+
+.kd-badge--outline {
+	background-color: transparent;
+	border: var(--kd-ref-border-width-hair) solid currentColor;
+}
+
+/* Filterbare Schlagworte. */
+.kd-tag {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	min-block-size: 2rem;
+	padding-inline: var(--kd-ref-space-4);
+	border: var(--kd-ref-border-width-hair) solid var(--kd-sys-color-border-default);
+	border-radius: var(--kd-ref-radius-full);
+	background-color: transparent;
+	color: var(--kd-sys-color-fg-muted);
+	font-size: var(--kd-ref-font-size-sm);
+	text-decoration: none;
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-tag:hover {
+		border-color: var(--kd-sys-color-border-accent);
+		color: var(--kd-sys-color-fg-accent);
+		background-color: var(--kd-sys-color-bg-accent-subtle);
+	}
+}
+
+.kd-tag[aria-pressed='true'] {
+	background-color: var(--kd-sys-color-bg-accent);
+	border-color: var(--kd-sys-color-bg-accent);
+	color: var(--kd-sys-color-fg-on-accent);
+}
+
+/* ---- Meldung ------------------------------------------------------------ */
+
+.kd-alert {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--kd-ref-space-3);
+	padding: var(--kd-cmp-alert-padding);
+	border-radius: var(--kd-cmp-alert-radius);
+	border-inline-start: var(--kd-cmp-alert-accent-width) solid var(--kd-alert-accent, var(--kd-sys-color-border-strong));
+	background-color: var(--kd-alert-bg, var(--kd-sys-color-bg-subtle));
+	color: var(--kd-alert-fg, var(--kd-sys-color-fg-default));
+}
+
+.kd-alert__icon {
+	flex: none;
+	inline-size: 1.4rem;
+	block-size: 1.4rem;
+	margin-block-start: 0.1rem;
+	color: var(--kd-alert-accent, var(--kd-sys-color-fg-muted));
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+}
+
+.kd-alert__body {
+	flex: 1 1 auto;
+}
+
+.kd-alert__title {
+	font-weight: var(--kd-ref-font-weight-bold);
+	margin-block-end: var(--kd-ref-space-1);
+}
+
+.kd-alert--info {
+	--kd-alert-bg: var(--kd-sys-color-status-info-bg);
+	--kd-alert-fg: var(--kd-sys-color-status-info-fg);
+	--kd-alert-accent: var(--kd-sys-color-status-info-accent);
+}
+
+.kd-alert--success {
+	--kd-alert-bg: var(--kd-sys-color-status-success-bg);
+	--kd-alert-fg: var(--kd-sys-color-status-success-fg);
+	--kd-alert-accent: var(--kd-sys-color-status-success-accent);
+}
+
+.kd-alert--warning {
+	--kd-alert-bg: var(--kd-sys-color-status-warning-bg);
+	--kd-alert-fg: var(--kd-sys-color-status-warning-fg);
+	--kd-alert-accent: var(--kd-sys-color-status-warning-accent);
+}
+
+.kd-alert--danger {
+	--kd-alert-bg: var(--kd-sys-color-status-danger-bg);
+	--kd-alert-fg: var(--kd-sys-color-status-danger-fg);
+	--kd-alert-accent: var(--kd-sys-color-status-danger-accent);
+}
+
+/* ---- Kennzahl ----------------------------------------------------------- */
+
+.kd-stat {
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-1);
+}
+
+.kd-stat__value {
+	font-size: var(--kd-sys-text-h2-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-ref-font-leading-none);
+	letter-spacing: var(--kd-ref-font-tracking-tight);
+	font-variant-numeric: tabular-nums;
+	color: var(--kd-sys-color-fg-strong);
+}
+
+.kd-stat__label {
+	font-size: var(--kd-sys-text-caption-size);
+	letter-spacing: var(--kd-ref-font-tracking-wide);
+	text-transform: uppercase;
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+/* ---- Fortschritt -------------------------------------------------------- */
+
+.kd-progress {
+	inline-size: 100%;
+	block-size: 0.5rem;
+	border-radius: var(--kd-ref-radius-full);
+	background-color: var(--kd-sys-color-bg-muted);
+	overflow: hidden;
+}
+
+.kd-progress__bar {
+	block-size: 100%;
+	inline-size: var(--kd-progress-value, 0%);
+	border-radius: inherit;
+	background-color: var(--kd-sys-color-bg-accent);
+	transition: inline-size var(--kd-ref-motion-duration-slower) var(--kd-sys-motion-transition-easing);
+}

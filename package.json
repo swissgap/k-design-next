@@ -1,0 +1,39 @@
+{
+  "name": "k-design-next",
+  "version": "0.1.0",
+  "description": "Design System auf Basis der Vorgaben der Bundeskanzlei — dreischichtige Tokens, Bund-konforme Komponenten, moderner Hero und systematische Interaktionsebene.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": ["*.css"],
+  "files": ["dist", "src", "tokens", "js", "scripts"],
+  "exports": {
+    ".": "./dist/kd.css",
+    "./css": "./dist/kd.css",
+    "./css/min": "./dist/kd.min.css",
+    "./tokens.css": "./dist/tokens/kd-tokens.css",
+    "./tokens.scss": "./dist/tokens/kd-tokens.scss",
+    "./tokens.json": "./dist/tokens/kd-tokens.json",
+    "./tokens": "./dist/tokens/kd-tokens.js",
+    "./js": "./js/kd.js"
+  },
+  "scripts": {
+    "build:tokens": "node scripts/build-tokens.mjs",
+    "build:css": "node scripts/build-css.mjs",
+    "build:showcase": "node scripts/build-showcase.mjs",
+    "docs:tokens": "node scripts/build-docs.mjs",
+    "build": "npm run build:tokens && npm run build:css && npm run build:showcase && npm run docs:tokens",
+    "check": "node scripts/check.mjs && node scripts/contrast.mjs",
+    "dev": "node scripts/serve.mjs",
+    "test": "npm run build && npm run check"
+  },
+  "keywords": [
+    "design-system",
+    "swiss-confederation",
+    "bundeskanzlei",
+    "admin.ch",
+    "design-tokens",
+    "accessibility",
+    "wcag"
+  ],
+  "engines": {"node": ">=20"}
+}

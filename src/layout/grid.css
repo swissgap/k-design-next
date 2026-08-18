@@ -1,0 +1,110 @@
+/* ==========================================================================
+   Grid
+   Zwei Sorten: „auto" (intrinsisch, bricht selbständig um) und feste
+   Spaltenzahlen mit den Breakpoints des swiss/designsystem.
+   ========================================================================== */
+
+.kd-grid {
+	display: grid;
+	gap: var(--kd-grid-gap, var(--kd-sys-layout-gap));
+}
+
+@media (min-width: 1024px) {
+	.kd-grid {
+		gap: var(--kd-grid-gap, var(--kd-sys-layout-gap-lg));
+	}
+}
+
+/* Intrinsisch: Spaltenzahl ergibt sich aus der Mindestbreite. Kein Breakpoint nötig. */
+.kd-grid--auto {
+	grid-template-columns: repeat(auto-fit, minmax(min(var(--kd-grid-min, 18rem), 100%), 1fr));
+}
+
+.kd-grid--auto-sm {
+	--kd-grid-min: 13rem;
+}
+
+.kd-grid--auto-lg {
+	--kd-grid-min: 24rem;
+}
+
+/* Feste Spalten. */
+@media (min-width: 768px) {
+	.kd-grid--2,
+	.kd-grid--3,
+	.kd-grid--4 {
+		grid-template-columns: repeat(2, minmax(0, 1fr));
+	}
+
+	.kd-grid--sidebar {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+	}
+
+	.kd-grid--sidebar-end {
+		grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+	}
+}
+
+@media (min-width: 1024px) {
+	.kd-grid--3 {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	.kd-grid--4 {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+/* Dreht die visuelle Reihenfolge ab md — Bild/Text-Wechsel. */
+@media (min-width: 768px) {
+	.kd-grid--reverse > *:first-child {
+		order: 2;
+	}
+
+	.kd-grid--reverse > *:nth-child(2) {
+		order: 1;
+	}
+}
+
+/* Spannweiten für redaktionelle Sonderfälle. */
+.kd-span-full {
+	grid-column: 1 / -1;
+}
+
+@media (min-width: 1024px) {
+	.kd-span-2 {
+		grid-column: span 2;
+	}
+
+	.kd-row-2 {
+		grid-row: span 2;
+	}
+}
+
+/* Seitenverhältnis für Medien. */
+.kd-ratio {
+	position: relative;
+	overflow: hidden;
+	aspect-ratio: var(--kd-ratio, 16 / 9);
+	background-color: var(--kd-sys-color-bg-muted);
+}
+
+.kd-ratio > img,
+.kd-ratio > video,
+.kd-ratio > iframe {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+.kd-ratio--square {
+	--kd-ratio: 1 / 1;
+}
+
+.kd-ratio--portrait {
+	--kd-ratio: 3 / 4;
+}
+
+.kd-ratio--wide {
+	--kd-ratio: 21 / 9;
+}

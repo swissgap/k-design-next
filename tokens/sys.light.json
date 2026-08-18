@@ -1,0 +1,140 @@
+{
+  "$description": "Tier 2 — Semantische Systemtokens, Modus 'light'. Beschreiben Rolle, nicht Farbe. Komponenten referenzieren ausschliesslich diese Schicht.",
+  "$mode": "light",
+  "color": {
+    "bg": {
+      "canvas":         { "$value": "{palette.neutral.0}",   "$type": "color", "$description": "Seitenhintergrund" },
+      "subtle":         { "$value": "{brand.secondary.50}",  "$type": "color" },
+      "muted":          { "$value": "{brand.secondary.100}", "$type": "color" },
+      "surface":        { "$value": "{palette.neutral.0}",   "$type": "color", "$description": "Karten, Panels" },
+      "surface-raised": { "$value": "{palette.neutral.0}",   "$type": "color" },
+      "surface-sunken": { "$value": "{palette.neutral.50}",  "$type": "color" },
+      "inverse":        { "$value": "{brand.secondary.800}", "$type": "color", "$description": "Footer, dunkle Sektionen" },
+      "inverse-strong": { "$value": "{brand.secondary.900}", "$type": "color" },
+      "inverse-subtle": { "$value": "{brand.secondary.600}", "$type": "color", "$description": "Top-Bar" },
+      "accent":         { "$value": "{brand.primary.600}",   "$type": "color" },
+      "accent-subtle":  { "$value": "{brand.primary.50}",    "$type": "color" },
+      "scrim":          { "$value": "rgba(19, 27, 34, 0.62)","$type": "color" },
+      "hover":          { "$value": "{brand.secondary.50}",  "$type": "color" },
+      "pressed":        { "$value": "{brand.secondary.100}", "$type": "color" },
+      "selected":       { "$value": "{brand.primary.50}",    "$type": "color" },
+      "disabled":       { "$value": "{palette.neutral.100}", "$type": "color" }
+    },
+    "fg": {
+      "default":      { "$value": "{palette.neutral.800}", "$type": "color", "$description": "Fliesstext, WCAG AA auf canvas" },
+      "strong":       { "$value": "{palette.neutral.900}", "$type": "color" },
+      "muted":        { "$value": "{palette.neutral.600}", "$type": "color" },
+      "subtle":       { "$value": "{palette.neutral.500}", "$type": "color", "$description": "Metadaten; nicht für Fliesstext" },
+      "inverse":      { "$value": "{palette.neutral.0}",   "$type": "color" },
+      "inverse-muted":{ "$value": "{brand.secondary.100}", "$type": "color" },
+      "accent":       { "$value": "{brand.primary.600}",   "$type": "color" },
+      "accent-strong":{ "$value": "{brand.primary.700}",   "$type": "color" },
+      "on-accent":    { "$value": "{palette.neutral.0}",   "$type": "color" },
+      "disabled":     { "$value": "{brand.secondary.300}", "$type": "color" }
+    },
+    "border": {
+      "subtle":  { "$value": "{palette.neutral.200}", "$type": "color" },
+      "default": { "$value": "{palette.neutral.300}", "$type": "color" },
+      "strong":  { "$value": "{brand.secondary.400}", "$type": "color" },
+      "interactive": { "$value": "{palette.neutral.500}", "$type": "color", "$description": "Grenze von Bedienelementen (Felder, Schalter) — muss WCAG 1.4.11 mit 3:1 erfüllen" },
+      "accent":  { "$value": "{brand.primary.600}",   "$type": "color" },
+      "inverse": { "$value": "rgba(255,255,255,0.24)","$type": "color" },
+      "disabled":{ "$value": "{brand.secondary.200}", "$type": "color" }
+    },
+    "link": {
+      "default":       { "$value": "{brand.primary.600}",  "$type": "color" },
+      "hover":         { "$value": "{brand.primary.700}",  "$type": "color" },
+      "visited":       { "$value": "{palette.violet.600}", "$type": "color" },
+      "inverse":       { "$value": "{palette.neutral.0}",  "$type": "color" },
+      "inverse-hover": { "$value": "{brand.secondary.100}","$type": "color" }
+    },
+    "action": {
+      "primary-bg":         { "$value": "{brand.secondary.500}", "$type": "color", "$description": "Gefüllte Buttons sind blaugrau, nicht rot — CD-Bund-Vorgabe" },
+      "primary-bg-hover":   { "$value": "{brand.secondary.600}", "$type": "color" },
+      "primary-bg-pressed": { "$value": "{brand.secondary.700}", "$type": "color" },
+      "primary-fg":         { "$value": "{palette.neutral.0}",   "$type": "color" },
+      "secondary-fg":       { "$value": "{brand.primary.600}",   "$type": "color" },
+      "secondary-fg-hover": { "$value": "{brand.primary.700}",   "$type": "color" },
+      "secondary-border":   { "$value": "{brand.primary.600}",   "$type": "color" },
+      "secondary-bg-hover": { "$value": "{brand.primary.50}",    "$type": "color" },
+      "tertiary-fg":        { "$value": "{brand.secondary.800}", "$type": "color" },
+      "tertiary-fg-hover":  { "$value": "{brand.primary.600}",   "$type": "color" },
+      "disabled-bg":        { "$value": "{brand.secondary.200}", "$type": "color" },
+      "disabled-fg":        { "$value": "{palette.neutral.0}",   "$type": "color" }
+    },
+    "status": {
+      "info-bg":       { "$value": "{palette.blue.50}",   "$type": "color" },
+      "info-fg":       { "$value": "{palette.blue.800}",  "$type": "color" },
+      "info-accent":   { "$value": "{palette.blue.600}",  "$type": "color" },
+      "success-bg":    { "$value": "{palette.green.50}",  "$type": "color" },
+      "success-fg":    { "$value": "{palette.green.800}", "$type": "color" },
+      "success-accent":{ "$value": "{palette.green.600}", "$type": "color" },
+      "warning-bg":    { "$value": "{palette.amber.50}",  "$type": "color" },
+      "warning-fg":    { "$value": "{palette.amber.900}", "$type": "color" },
+      "warning-accent":{ "$value": "{palette.amber.600}", "$type": "color" },
+      "danger-bg":     { "$value": "{palette.red.50}",    "$type": "color" },
+      "danger-fg":     { "$value": "{palette.red.800}",   "$type": "color" },
+      "danger-accent": { "$value": "{palette.red.600}",   "$type": "color" }
+    },
+    "focus": {
+      "ring":   { "$value": "{palette.violet.500}", "$type": "color", "$description": "Violett — konsistent zu swiss/designsystem (ring-purple-500) und Oblique" },
+      "offset": { "$value": "{palette.neutral.0}",  "$type": "color" }
+    },
+    "logo": {
+      "shield": { "$value": "{palette.swiss.flag}", "$type": "color" },
+      "cross":  { "$value": "{palette.neutral.0}",  "$type": "color" }
+    }
+  },
+
+  "elevation": {
+    "flat":     { "$value": "{shadow.none}", "$type": "shadow" },
+    "raised":   { "$value": "{shadow.md}",   "$type": "shadow" },
+    "floating": { "$value": "{shadow.xl}",   "$type": "shadow" },
+    "overlay":  { "$value": "{shadow.2xl}",  "$type": "shadow" },
+    "modal":    { "$value": "{shadow.3xl}",  "$type": "shadow" }
+  },
+
+  "text": {
+    "display-size":   { "$value": "clamp(2.5rem, 1.6rem + 4.2vw, 5rem)",     "$type": "dimension" },
+    "display-leading":{ "$value": "{font.leading.tight}",                     "$type": "number" },
+    "h1-size":        { "$value": "clamp(2rem, 1.4rem + 2.6vw, 3.5rem)",      "$type": "dimension" },
+    "h2-size":        { "$value": "clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem)",  "$type": "dimension" },
+    "h3-size":        { "$value": "clamp(1.375rem, 1.15rem + 0.9vw, 2rem)",   "$type": "dimension" },
+    "h4-size":        { "$value": "clamp(1.25rem, 1.1rem + 0.5vw, 1.625rem)", "$type": "dimension" },
+    "h5-size":        { "$value": "clamp(1.125rem, 1.05rem + 0.3vw, 1.375rem)","$type": "dimension" },
+    "lead-size":      { "$value": "clamp(1.125rem, 1.02rem + 0.5vw, 1.375rem)","$type": "dimension" },
+    "body-size":      { "$value": "clamp(1rem, 0.97rem + 0.15vw, 1.125rem)",  "$type": "dimension" },
+    "small-size":     { "$value": "{font.size.sm}",                           "$type": "dimension" },
+    "caption-size":   { "$value": "{font.size.xs}",                           "$type": "dimension" },
+    "overline-size":  { "$value": "{font.size.2xs}",                          "$type": "dimension" }
+  },
+
+  "layout": {
+    "container-max":      { "$value": "1544px", "$type": "dimension" },
+    "container-max-wide": { "$value": "1676px", "$type": "dimension" },
+    "measure":            { "$value": "68ch",   "$type": "dimension", "$description": "Optimale Zeilenlänge für Fliesstext" },
+    "gutter":             { "$value": "{space.4}",  "$type": "dimension" },
+    "gutter-lg":          { "$value": "{space.10}", "$type": "dimension" },
+    "gap":                { "$value": "{space.5}",  "$type": "dimension" },
+    "gap-lg":             { "$value": "{space.10}", "$type": "dimension" },
+    "section-py":         { "$value": "{space.14}", "$type": "dimension" },
+    "section-py-lg":      { "$value": "{space.20}", "$type": "dimension" },
+    "header-height":      { "$value": "4.5rem",  "$type": "dimension" }
+  },
+
+  "motion": {
+    "hover-duration":     { "$value": "{motion.duration.fast}",     "$type": "duration" },
+    "hover-easing":       { "$value": "{motion.easing.standard}",   "$type": "cubicBezier" },
+    "transition-duration":{ "$value": "{motion.duration.base}",     "$type": "duration" },
+    "transition-easing":  { "$value": "{motion.easing.standard}",   "$type": "cubicBezier" },
+    "reveal-duration":    { "$value": "{motion.duration.slower}",   "$type": "duration" },
+    "reveal-easing":      { "$value": "{motion.easing.entrance}",   "$type": "cubicBezier" },
+    "lift-distance":      { "$value": "-4px", "$type": "dimension", "$description": "Vertikaler Versatz beim Karten-Hover" },
+    "press-scale":        { "$value": "0.985","$type": "number" }
+  },
+
+  "focus": {
+    "ring-width":  { "$value": "{border.width.thick}", "$type": "dimension" },
+    "ring-offset": { "$value": "{border.width.thin}",  "$type": "dimension" }
+  }
+}

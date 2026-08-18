@@ -1,0 +1,265 @@
+/* ==========================================================================
+   Interaktions- und Bewegungsebene
+   ---------------------------------------------------------------------------
+   Mouseover-Effekte sind hier kein Dekor, sondern eine eigene Systemschicht:
+   jeder Effekt ist eine benannte Klasse, verwendet nur Tokens und läuft
+   ausschliesslich auf Geräten mit echtem Zeiger (@media (hover: hover)).
+   Animiert wird nur, was den Compositor nicht verlässt — transform, opacity,
+   filter. Keine Layout-Eigenschaften.
+   ========================================================================== */
+
+/* Zeigerposition, von js/kd.js pro Element gesetzt. Fallback: Elementmitte. */
+:root {
+	--kd-pointer-x: 50%;
+	--kd-pointer-y: 50%;
+	--kd-pointer-active: 0;
+}
+
+/* --------------------------------------------------------------------------
+   1 · Anheben — Karten und Kacheln
+   -------------------------------------------------------------------------- */
+
+.kd-lift {
+	transition:
+		transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		box-shadow var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+	will-change: transform;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-lift:hover,
+	.kd-lift:focus-within {
+		transform: translate3d(0, var(--kd-sys-motion-lift-distance), 0);
+		box-shadow: var(--kd-sys-elevation-overlay);
+	}
+}
+
+.kd-lift:active {
+	transform: scale(var(--kd-sys-motion-press-scale));
+	transition-duration: var(--kd-ref-motion-duration-fast);
+}
+
+/* --------------------------------------------------------------------------
+   2 · Spotlight — folgt dem Zeiger über der Fläche
+   -------------------------------------------------------------------------- */
+
+.kd-spotlight {
+	position: relative;
+	isolation: isolate;
+}
+
+.kd-spotlight::before {
+	content: '';
+	position: absolute;
+	inset: 0;
+	z-index: -1;
+	pointer-events: none;
+	border-radius: inherit;
+	opacity: 0;
+	transition: opacity var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+	background: radial-gradient(
+		var(--kd-spotlight-size, var(--kd-cmp-card-spotlight-size)) circle at var(--kd-pointer-x) var(--kd-pointer-y),
+		color-mix(
+			in srgb,
+			var(--kd-spotlight-color, var(--kd-sys-color-bg-accent))
+				calc(var(--kd-cmp-card-spotlight-opacity) * 100%),
+			transparent
+		),
+		transparent 68%
+	);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-spotlight:hover::before,
+	.kd-spotlight:focus-within::before {
+		opacity: 1;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   3 · Akzentkante — fährt beim Hover von links ein
+   -------------------------------------------------------------------------- */
+
+.kd-edge {
+	position: relative;
+}
+
+.kd-edge::after {
+	content: '';
+	position: absolute;
+	inset-block-end: 0;
+	inset-inline-start: 0;
+	inline-size: 100%;
+	block-size: var(--kd-cmp-card-accent-bar);
+	background-color: var(--kd-sys-color-bg-accent);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+.kd-edge--top::after {
+	inset-block: 0 auto;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-edge:hover::after,
+	.kd-edge:focus-within::after {
+		transform: scaleX(1);
+	}
+}
+
+/* --------------------------------------------------------------------------
+   4 · Unterstreichung, die aufwächst — Links und Navigation
+   -------------------------------------------------------------------------- */
+
+.kd-underline {
+	background-image: linear-gradient(currentColor, currentColor);
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 0% var(--kd-ref-border-width-thin);
+	padding-block-end: 0.12em;
+	text-decoration: none;
+	transition:
+		background-size var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-underline:hover {
+		background-size: 100% var(--kd-ref-border-width-thin);
+	}
+}
+
+.kd-underline:focus-visible {
+	background-size: 100% var(--kd-ref-border-width-thin);
+}
+
+/* Umgekehrt: dauerhaft unterstrichen, verschwindet beim Hover. */
+.kd-underline--reverse {
+	background-size: 100% var(--kd-ref-border-width-thin);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-underline--reverse:hover {
+		background-size: 0% var(--kd-ref-border-width-thin);
+	}
+}
+
+/* --------------------------------------------------------------------------
+   5 · Medienzoom — Bild wächst, Rahmen bleibt
+   -------------------------------------------------------------------------- */
+
+.kd-zoom {
+	overflow: hidden;
+}
+
+.kd-zoom > img,
+.kd-zoom > picture > img,
+.kd-zoom > .kd-zoom__media {
+	transition: transform var(--kd-ref-motion-duration-slower) var(--kd-sys-motion-transition-easing);
+	transform-origin: center;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-zoom:hover > img,
+	.kd-zoom:hover > picture > img,
+	.kd-zoom:hover > .kd-zoom__media,
+	.kd-zoom:focus-within > img,
+	.kd-zoom:focus-within > .kd-zoom__media {
+		transform: scale(1.06);
+	}
+}
+
+/* --------------------------------------------------------------------------
+   6 · Pfeil, der vorausgeht
+   -------------------------------------------------------------------------- */
+
+.kd-arrow__icon {
+	flex: none;
+	inline-size: 1.25em;
+	block-size: 1.25em;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-arrow:hover .kd-arrow__icon,
+	.kd-arrow:focus-visible .kd-arrow__icon,
+	.kd-lift:hover .kd-arrow__icon,
+	.kd-lift:focus-within .kd-arrow__icon {
+		transform: translateX(var(--kd-cmp-button-icon-shift));
+	}
+}
+
+/* --------------------------------------------------------------------------
+   7 · Neigung — dreidimensionale Reaktion, Werte kommen aus js/kd.js
+   -------------------------------------------------------------------------- */
+
+.kd-tilt {
+	transform-style: preserve-3d;
+	transition: transform var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-tilt {
+		transform: perspective(900px) rotateX(var(--kd-tilt-x, 0deg)) rotateY(var(--kd-tilt-y, 0deg))
+			translate3d(0, 0, 0);
+	}
+}
+
+/* --------------------------------------------------------------------------
+   8 · Einblenden beim Scrollen — IntersectionObserver setzt .is-revealed
+   -------------------------------------------------------------------------- */
+
+.kd-reveal {
+	opacity: 0;
+	transform: translate3d(0, 1.25rem, 0);
+	transition:
+		opacity var(--kd-sys-motion-reveal-duration) var(--kd-sys-motion-reveal-easing),
+		transform var(--kd-sys-motion-reveal-duration) var(--kd-sys-motion-reveal-easing);
+	transition-delay: var(--kd-reveal-delay, 0ms);
+}
+
+.kd-reveal.is-revealed {
+	opacity: 1;
+	transform: none;
+}
+
+/* Ohne JavaScript bleibt nichts unsichtbar. */
+.kd-no-js .kd-reveal {
+	opacity: 1;
+	transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.kd-reveal {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   9 · Zustandsfläche — flächige Rückmeldung für Listen und Menüeinträge
+   -------------------------------------------------------------------------- */
+
+.kd-state {
+	position: relative;
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-state:hover {
+		background-color: var(--kd-sys-color-bg-hover);
+	}
+}
+
+.kd-state:active {
+	background-color: var(--kd-sys-color-bg-pressed);
+}
+
+.kd-state[aria-current],
+.kd-state[aria-selected='true'] {
+	background-color: var(--kd-sys-color-bg-selected);
+}

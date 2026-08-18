@@ -1,0 +1,104 @@
+{
+  "$description": "Tier 3 — Komponententokens. Der einzige Ort, an dem eine Komponente konfigurierbar ist. Referenziert ausschliesslich Tier 2.",
+  "button": {
+    "radius":            { "$value": "{radius.sm}", "$type": "dimension" },
+    "border-width":      { "$value": "{border.width.hair}", "$type": "dimension" },
+    "padding-inline":    { "$value": "{space.5}", "$type": "dimension" },
+    "padding-inline-sm": { "$value": "{space.3}", "$type": "dimension" },
+    "padding-inline-lg": { "$value": "{space.7}", "$type": "dimension" },
+    "min-height":        { "$value": "2.75rem",   "$type": "dimension", "$description": "44px — WCAG 2.2 Target Size (Minimum)" },
+    "min-height-sm":     { "$value": "2.25rem",   "$type": "dimension" },
+    "min-height-lg":     { "$value": "3.25rem",   "$type": "dimension" },
+    "font-weight":       { "$value": "{font.weight.bold}", "$type": "fontWeight" },
+    "shadow-hover":      { "$value": "{elevation.raised}", "$type": "shadow" },
+    "icon-shift":        { "$value": "0.25rem", "$type": "dimension", "$description": "Weg, den das Pfeil-Icon beim Hover wandert" }
+  },
+  "card": {
+    "bg":            { "$value": "{color.bg.surface}",    "$type": "color" },
+    "radius":        { "$value": "{radius.md}",           "$type": "dimension" },
+    "border-color":  { "$value": "{color.border.subtle}", "$type": "color" },
+    "padding":       { "$value": "{space.6}",             "$type": "dimension" },
+    "padding-lg":    { "$value": "{space.8}",             "$type": "dimension" },
+    "shadow":        { "$value": "{elevation.raised}",    "$type": "shadow" },
+    "shadow-hover":  { "$value": "{elevation.overlay}",   "$type": "shadow" },
+    "lift":          { "$value": "{motion.lift-distance}","$type": "dimension" },
+    "media-ratio":   { "$value": "16 / 9",                "$type": "number" },
+    "accent-bar":    { "$value": "{border.width.thick}",  "$type": "dimension", "$description": "Akzentlinie, die beim Hover einfährt" },
+    "spotlight-size":{ "$value": "22rem",                 "$type": "dimension" },
+    "spotlight-opacity": { "$value": "0.10",              "$type": "number" }
+  },
+  "hero": {
+    "min-height":       { "$value": "clamp(30rem, 74svh, 46rem)", "$type": "dimension" },
+    "padding-block":    { "$value": "clamp(4rem, 9vw, 9rem)",     "$type": "dimension" },
+    "bg":               { "$value": "{color.bg.inverse-strong}",  "$type": "color" },
+    "fg":               { "$value": "{color.fg.inverse}",         "$type": "color" },
+    "grid-color":       { "$value": "rgba(255,255,255,0.055)",    "$type": "color" },
+    "grid-size":        { "$value": "72px",                       "$type": "dimension" },
+    "spotlight-color":  { "$value": "rgba(216, 35, 42, 0.30)",    "$type": "color" },
+    "spotlight-size":   { "$value": "46rem",                      "$type": "dimension" },
+    "veil":             { "$value": "rgba(19, 27, 34, 0.55)",     "$type": "color" },
+    "eyebrow-size":     { "$value": "{text.overline-size}",       "$type": "dimension" },
+    "fg-strong":        { "$value": "{palette.neutral.0}",        "$type": "color" },
+    "fg-muted":         { "$value": "rgba(255, 255, 255, 0.82)",  "$type": "color" },
+    "fg-faint":         { "$value": "rgba(255, 255, 255, 0.60)",  "$type": "color" },
+    "border":           { "$value": "rgba(255, 255, 255, 0.20)",  "$type": "color" },
+    "accent":           { "$value": "{palette.red.400}",          "$type": "color" },
+    "drift-a":          { "$value": "rgba(216, 35, 42, 0.22)",    "$type": "color" },
+    "drift-b":          { "$value": "rgba(70, 89, 107, 0.50)",    "$type": "color" },
+    "drift-opacity":    { "$value": "0.55",                       "$type": "number" },
+    "field-bg":         { "$value": "rgba(255, 255, 255, 0.08)",  "$type": "color" }
+  },
+  "field": {
+    "bg":            { "$value": "{color.bg.surface}",    "$type": "color" },
+    "fg":            { "$value": "{color.fg.default}",    "$type": "color" },
+    "border-color":  { "$value": "{color.border.interactive}","$type": "color" },
+    "border-hover":  { "$value": "{color.border.strong}", "$type": "color" },
+    "border-focus":  { "$value": "{color.border.accent}", "$type": "color" },
+    "radius":        { "$value": "{radius.sm}",           "$type": "dimension" },
+    "min-height":    { "$value": "2.75rem",               "$type": "dimension" },
+    "padding-inline":{ "$value": "{space.3}",             "$type": "dimension" },
+    "placeholder":   { "$value": "{color.fg.subtle}",     "$type": "color" }
+  },
+  "topbar": {
+    "bg":       { "$value": "{color.bg.inverse-subtle}", "$type": "color" },
+    "fg":       { "$value": "{color.fg.inverse}",        "$type": "color" },
+    "height":   { "$value": "2.5rem",                    "$type": "dimension" },
+    "font-size":{ "$value": "{font.size.sm}",            "$type": "dimension" }
+  },
+  "header": {
+    "bg":            { "$value": "{color.bg.canvas}",    "$type": "color" },
+    "border-color":  { "$value": "{color.border.subtle}","$type": "color" },
+    "padding-block": { "$value": "{space.4}",            "$type": "dimension" },
+    "logo-height":   { "$value": "2.5rem",               "$type": "dimension" }
+  },
+  "nav": {
+    "fg":               { "$value": "{color.fg.default}",   "$type": "color" },
+    "fg-hover":         { "$value": "{color.fg.accent}",    "$type": "color" },
+    "indicator-color":  { "$value": "{color.bg.accent}",    "$type": "color" },
+    "indicator-height": { "$value": "{border.width.thick}", "$type": "dimension" },
+    "gap":              { "$value": "{space.7}",            "$type": "dimension" }
+  },
+  "footer": {
+    "bg":           { "$value": "{color.bg.inverse}",     "$type": "color" },
+    "fg":           { "$value": "{color.fg.inverse}",     "$type": "color" },
+    "fg-muted":     { "$value": "{color.fg.inverse-muted}","$type": "color" },
+    "border-color": { "$value": "{color.border.inverse}", "$type": "color" }
+  },
+  "badge": {
+    "radius":       { "$value": "{radius.full}",  "$type": "dimension" },
+    "font-size":    { "$value": "{font.size.2xs}","$type": "dimension" },
+    "padding-inline":{ "$value": "{space.3}",     "$type": "dimension" },
+    "padding-block":{ "$value": "{space.1}",      "$type": "dimension" }
+  },
+  "alert": {
+    "radius":       { "$value": "{radius.md}",          "$type": "dimension" },
+    "padding":      { "$value": "{space.4}",            "$type": "dimension" },
+    "accent-width": { "$value": "{border.width.thick}", "$type": "dimension" }
+  },
+  "table": {
+    "border-color": { "$value": "{color.border.subtle}", "$type": "color" },
+    "head-bg":      { "$value": "{color.bg.subtle}",     "$type": "color" },
+    "row-hover-bg": { "$value": "{color.bg.hover}",      "$type": "color" },
+    "cell-padding": { "$value": "{space.3}",             "$type": "dimension" }
+  }
+}

@@ -1,0 +1,54 @@
+/* ==========================================================================
+   Farbfelder
+   Für Tokendokumentation. Die Trennlinien entstehen aus dem Gitterabstand,
+   damit auch Felder sichtbar bleiben, die genau der Hintergrundfarbe des
+   umgebenden Bandes entsprechen.
+   ========================================================================== */
+
+.kd-swatches {
+	display: grid;
+	grid-auto-flow: column;
+	grid-auto-columns: 1fr;
+	gap: 1px;
+	padding: 1px;
+	border-radius: var(--kd-ref-radius-md);
+	background-color: var(--kd-sys-color-border-inverse);
+	overflow: hidden;
+}
+
+.kd-swatch {
+	position: relative;
+	block-size: 4rem;
+	background-color: var(--kd-swatch, transparent);
+}
+
+/* Stufenzahl erscheint beim Hover, ohne das ruhige Bild zu stören. */
+.kd-swatch::after {
+	content: attr(data-kd-step);
+	position: absolute;
+	inset-block-end: 0.25rem;
+	inset-inline: 0;
+	text-align: center;
+	font-size: var(--kd-ref-font-size-3xs);
+	font-variant-numeric: tabular-nums;
+	color: var(--kd-swatch-label, var(--kd-sys-color-fg-inverse));
+	opacity: 0;
+	transition: opacity var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-swatches:hover .kd-swatch::after {
+		opacity: 0.85;
+	}
+}
+
+/* Helle Felder brauchen dunkle Beschriftung. */
+.kd-swatch--light {
+	--kd-swatch-label: var(--kd-ref-palette-neutral-900);
+}
+
+.kd-swatch-legend {
+	margin-block-start: var(--kd-ref-space-2);
+	font-size: var(--kd-sys-text-caption-size);
+	opacity: 0.75;
+}

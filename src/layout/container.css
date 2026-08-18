@@ -1,0 +1,105 @@
+/* ==========================================================================
+   Container
+   Gutter und Maximalbreiten exakt nach swiss/designsystem
+   (1544 px ab 2xl, 1676 px ab 3xl).
+   ========================================================================== */
+
+.kd-container {
+	inline-size: 100%;
+	margin-inline: auto;
+	padding-inline: var(--kd-sys-layout-gutter);
+	overflow-x: clip;
+}
+
+@media (min-width: 480px) {
+	.kd-container {
+		padding-inline: var(--kd-ref-space-7);
+	}
+}
+
+@media (min-width: 640px) {
+	.kd-container {
+		padding-inline: var(--kd-ref-space-9);
+	}
+}
+
+@media (min-width: 1024px) {
+	.kd-container {
+		padding-inline: var(--kd-ref-space-10);
+	}
+}
+
+@media (min-width: 1280px) {
+	.kd-container {
+		padding-inline: var(--kd-ref-space-12);
+	}
+}
+
+@media (min-width: 1544px) {
+	.kd-container {
+		max-inline-size: var(--kd-sys-layout-container-max);
+	}
+}
+
+@media (min-width: 1920px) {
+	.kd-container {
+		max-inline-size: var(--kd-sys-layout-container-max-wide);
+		padding-inline: var(--kd-ref-space-16);
+	}
+}
+
+/* Engere Lesebreiten innerhalb des Containers. */
+.kd-container--narrow {
+	max-inline-size: 62rem;
+}
+
+.kd-container--reading {
+	max-inline-size: 48rem;
+}
+
+/* Randlos — für Hero und Vollflächenbilder. */
+.kd-container--flush {
+	padding-inline: 0;
+}
+
+/* Bricht aus dem Container aus, bleibt aber im Dokumentfluss. */
+.kd-bleed {
+	margin-inline: calc(50% - 50vw);
+	max-inline-size: 100vw;
+}
+
+/* Stapelabstand als eigenständiges Layoutprimitiv. */
+.kd-stack > * + * {
+	margin-block-start: var(--kd-stack-gap, var(--kd-ref-space-5));
+}
+
+.kd-stack--sm {
+	--kd-stack-gap: var(--kd-ref-space-3);
+}
+
+.kd-stack--lg {
+	--kd-stack-gap: var(--kd-ref-space-8);
+}
+
+.kd-stack--xl {
+	--kd-stack-gap: var(--kd-ref-space-12);
+}
+
+.kd-cluster {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--kd-cluster-gap, var(--kd-ref-space-4));
+}
+
+.kd-cluster--between {
+	justify-content: space-between;
+}
+
+.kd-cluster--sm {
+	--kd-cluster-gap: var(--kd-ref-space-2);
+}
+
+.kd-cluster--lg {
+	--kd-cluster-gap: var(--kd-ref-space-8);
+}

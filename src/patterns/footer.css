@@ -1,0 +1,187 @@
+/* ==========================================================================
+   Footer
+   Dunkles Band, drei Spalten ab lg, vier ab xl, darunter die schmale
+   Rechtszeile. Entspricht der Aufteilung von .footer-information und
+   .footer-navigation im swiss/designsystem.
+   ========================================================================== */
+
+.kd-footer {
+	background-color: var(--kd-cmp-footer-bg);
+	color: var(--kd-cmp-footer-fg);
+}
+
+.kd-footer__main {
+	display: grid;
+	gap: var(--kd-ref-space-10);
+	padding-block: var(--kd-sys-layout-section-py);
+}
+
+@media (min-width: 1024px) {
+	.kd-footer__main {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: var(--kd-ref-space-16);
+	}
+}
+
+@media (min-width: 1280px) {
+	.kd-footer__main {
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+	}
+}
+
+.kd-footer__title {
+	margin-block-end: var(--kd-ref-space-4);
+	font-size: var(--kd-ref-font-size-md);
+	font-weight: var(--kd-ref-font-weight-bold);
+	color: var(--kd-cmp-footer-fg);
+}
+
+.kd-footer__list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-3);
+}
+
+.kd-footer__link {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	color: var(--kd-cmp-footer-fg);
+	text-decoration: none;
+	background-image: linear-gradient(currentColor, currentColor);
+	background-repeat: no-repeat;
+	background-position: 0 100%;
+	background-size: 0% 1px;
+	transition:
+		background-size var(--kd-sys-motion-transition-duration) var(--kd-sys-motion-transition-easing),
+		color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-footer__link:hover {
+		color: var(--kd-cmp-footer-fg);
+		background-size: 100% 1px;
+	}
+}
+
+.kd-footer__link svg {
+	inline-size: 1.1em;
+	block-size: 1.1em;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+	flex: none;
+}
+
+.kd-footer__text {
+	color: var(--kd-cmp-footer-fg-muted);
+	max-inline-size: 32rem;
+}
+
+/* Wappen und Amtsname im Footer. */
+.kd-footer__brand {
+	display: flex;
+	align-items: flex-start;
+	gap: var(--kd-ref-space-4);
+	margin-block-end: var(--kd-ref-space-6);
+}
+
+.kd-footer__brand .kd-logo__wordmark,
+.kd-footer__brand .kd-logo__office {
+	color: var(--kd-cmp-footer-fg);
+}
+
+/* Soziale Kanäle. */
+.kd-footer__socials {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--kd-ref-space-3);
+}
+
+.kd-footer__social {
+	display: grid;
+	place-items: center;
+	inline-size: 2.75rem;
+	block-size: 2.75rem;
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-footer-border-color);
+	border-radius: var(--kd-ref-radius-full);
+	color: var(--kd-cmp-footer-fg);
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		transform var(--kd-sys-motion-transition-duration) var(--kd-ref-motion-easing-emphasis);
+}
+
+.kd-footer__social svg {
+	inline-size: 1.15rem;
+	block-size: 1.15rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 1.9;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-footer__social:hover {
+		background-color: var(--kd-ref-palette-red-600);
+		border-color: var(--kd-ref-palette-red-600);
+		transform: translateY(-3px);
+	}
+}
+
+/* Rechtszeile. */
+.kd-footer__legal {
+	border-block-start: var(--kd-ref-border-width-hair) solid var(--kd-cmp-footer-border-color);
+}
+
+.kd-footer__legal-inner {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: space-between;
+	gap: var(--kd-ref-space-4);
+	padding-block: var(--kd-ref-space-5);
+	font-size: var(--kd-ref-font-size-xs);
+	color: var(--kd-cmp-footer-fg-muted);
+}
+
+.kd-footer__legal-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: var(--kd-ref-space-2) var(--kd-ref-space-5);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kd-footer__legal a {
+	color: var(--kd-cmp-footer-fg-muted);
+	text-decoration: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-footer__legal a:hover {
+		color: var(--kd-cmp-footer-fg);
+		text-decoration: underline;
+	}
+}
+
+/* Newsletter-Streifen über dem Footer. */
+.kd-footer__cta {
+	border-block-end: var(--kd-ref-border-width-hair) solid var(--kd-cmp-footer-border-color);
+}
+
+.kd-footer__cta-inner {
+	display: grid;
+	gap: var(--kd-ref-space-6);
+	padding-block: var(--kd-ref-space-12);
+	align-items: center;
+}
+
+@media (min-width: 1024px) {
+	.kd-footer__cta-inner {
+		grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+	}
+}

@@ -1,0 +1,860 @@
+<!doctype html>
+<html lang="de" class="kd-no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>k-design-next — Design System der Bundeskanzlei</title>
+		<meta
+			name="description"
+			content="Design System auf Basis der Vorgaben der Bundeskanzlei: dreischichtige Tokens, Bund-konforme Komponenten, moderner Hero und eine systematische Interaktionsebene."
+		/>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="../dist/kd.css" />
+		<link
+			rel="icon"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 44'%3E%3Cpath d='m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z' fill='%23ff0000'/%3E%3Cpath d='m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z' fill='%23fff'/%3E%3C/svg%3E"
+		/>
+	</head>
+	<body>
+		<a class="kd-skip-link" href="#inhalt">Direkt zum Inhalt</a>
+
+		<!-- ================================================== Top-Bar ==== -->
+		<div class="kd-topbar">
+			<div class="kd-container">
+				<div class="kd-topbar__inner">
+					<button class="kd-topbar__authorities" type="button" data-kd-toggle="behoerden">
+						Alle Schweizer Bundesbehörden
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+					</button>
+
+					<div class="kd-topbar__meta">
+						<button
+							class="kd-topbar__authorities kd-hide-below-md"
+							type="button"
+							data-kd-theme-toggle
+							aria-pressed="false"
+						>
+							<svg viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" />
+							</svg>
+							<span data-kd-theme-label>Dunkel</span>
+						</button>
+
+						<nav aria-label="Sprachwahl">
+							<ul class="kd-lang">
+								<li><a class="kd-lang__link" href="#inhalt" aria-current="true" lang="de">de</a></li>
+								<li><a class="kd-lang__link" href="#inhalt" lang="fr">fr</a></li>
+								<li><a class="kd-lang__link" href="#inhalt" lang="it">it</a></li>
+								<li><a class="kd-lang__link" href="#inhalt" lang="rm">rm</a></li>
+								<li><a class="kd-lang__link" href="#inhalt" lang="en">en</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="kd-topbar__drawer" id="behoerden" hidden>
+			<div class="kd-container">
+				<div class="kd-topbar__drawer-inner">
+					<div>
+						<p class="kd-caption">Wo befinde ich mich?</p>
+						<p><strong>Schweizerische Eidgenossenschaft</strong> › Bundeskanzlei BK</p>
+					</div>
+					<div>
+						<p class="kd-caption">Behörden</p>
+						<ul class="kd-footer__list">
+							<li><a class="kd-footer__link" href="#inhalt">Der Bundesrat</a></li>
+							<li><a class="kd-footer__link" href="#inhalt">Bundesversammlung</a></li>
+							<li><a class="kd-footer__link" href="#inhalt">Bundesgericht</a></li>
+						</ul>
+					</div>
+					<div>
+						<p class="kd-caption">Departemente</p>
+						<ul class="kd-footer__list">
+							<li><a class="kd-footer__link" href="#inhalt">EDA · EDI · EJPD</a></li>
+							<li><a class="kd-footer__link" href="#inhalt">VBS · EFD · WBF</a></li>
+							<li><a class="kd-footer__link" href="#inhalt">UVEK</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- =================================================== Header ==== -->
+		<header class="kd-header">
+			<div class="kd-container">
+				<div class="kd-header__inner">
+					<a class="kd-logo" href="#inhalt">
+						<svg class="kd-logo__shield" viewBox="0 0 40 44" role="img" aria-label="Schweizerische Eidgenossenschaft">
+							<path
+								d="m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z"
+								fill="#ff0000"
+							/>
+							<path
+								d="m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z"
+								fill="#ffffff"
+							/>
+						</svg>
+						<span class="kd-logo__text">
+							<span class="kd-logo__wordmark">
+								Schweizerische Eidgenossenschaft<br />
+								Confédération suisse<br />
+								Confederazione Svizzera<br />
+								Confederaziun svizra
+							</span>
+							<span class="kd-logo__office">Bundeskanzlei BK</span>
+						</span>
+					</a>
+
+					<div class="kd-header__actions">
+						<div class="kd-search kd-hide-below-lg" style="min-inline-size: 18rem">
+							<svg class="kd-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+								<circle cx="11" cy="11" r="7" />
+								<path d="m20 20-3.5-3.5" />
+							</svg>
+							<label class="kd-sr-only" for="suche">Suchbegriff</label>
+							<input class="kd-input" id="suche" type="search" placeholder="Suchen" />
+						</div>
+
+						<button class="kd-burger" type="button" data-kd-toggle="mobilnav" aria-label="Menü">
+							<span class="kd-burger__box">
+								<span class="kd-burger__bar"></span>
+								<span class="kd-burger__bar"></span>
+								<span class="kd-burger__bar"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- =========================================== Hauptnavigation ==== -->
+		<nav class="kd-mainnav" aria-label="Hauptnavigation">
+			<div class="kd-container">
+				<ul class="kd-mainnav__list">
+					<li><a class="kd-mainnav__link" href="#grundlagen" aria-current="page">Grundlagen</a></li>
+					<li><a class="kd-mainnav__link" href="#interaktion">Interaktion</a></li>
+					<li><a class="kd-mainnav__link" href="#komponenten">Komponenten</a></li>
+					<li><a class="kd-mainnav__link" href="#tokens">Tokens</a></li>
+					<li><a class="kd-mainnav__link" href="#einsatz">Einsatz</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<nav class="kd-mobilenav" id="mobilnav" aria-label="Hauptnavigation, mobil" hidden>
+			<div class="kd-container">
+				<ul class="kd-mobilenav__list">
+					<li><a class="kd-mobilenav__link" href="#grundlagen" aria-current="page">Grundlagen</a></li>
+					<li><a class="kd-mobilenav__link" href="#interaktion">Interaktion</a></li>
+					<li><a class="kd-mobilenav__link" href="#komponenten">Komponenten</a></li>
+					<li><a class="kd-mobilenav__link" href="#tokens">Tokens</a></li>
+					<li><a class="kd-mobilenav__link" href="#einsatz">Einsatz</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<main id="inhalt">
+			<!-- ================================================== Hero ==== -->
+			<section class="kd-hero" data-kd-pointer aria-labelledby="hero-titel">
+				<div class="kd-hero__drift" aria-hidden="true"></div>
+				<div class="kd-hero__canvas" aria-hidden="true"></div>
+				<div class="kd-hero__glow" aria-hidden="true"></div>
+
+				<div class="kd-container kd-hero__inner">
+					<div class="kd-hero__content">
+						<span class="kd-hero__eyebrow">Design System · Version 0.1</span>
+
+						<h1 class="kd-hero__title" id="hero-titel">
+							Ein Auftritt, der nach <span class="kd-hero__accent">Bund</span> aussieht — und sich
+							heutig anfühlt.
+						</h1>
+
+						<p class="kd-hero__lead">
+							k-design-next übernimmt Farbwelt, Typografie und Formensprache aus dem Design System der
+							Schweizerischen Eidgenossenschaft und legt die Tokenarchitektur von Oblique darunter.
+							Dazu kommt eine Ebene, die beide bisher offen lassen: eine durchgehend definierte
+							Interaktion.
+						</p>
+
+						<div class="kd-hero__actions">
+							<a class="kd-btn kd-btn--negative-filled kd-btn--lg" href="#grundlagen">
+								System ansehen
+								<svg class="kd-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M5 12h14M13 6l6 6-6 6" />
+								</svg>
+							</a>
+							<a class="kd-btn kd-btn--negative kd-btn--lg" href="#tokens">Tokens öffnen</a>
+						</div>
+
+						<dl class="kd-hero__facts">
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">Design Tokens</dt>
+								<dd class="kd-hero__fact-value" data-kd-count="436">436</dd>
+							</div>
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">Tokenschichten</dt>
+								<dd class="kd-hero__fact-value" data-kd-count="3">3</dd>
+							</div>
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">Hover-Primitive</dt>
+								<dd class="kd-hero__fact-value" data-kd-count="9">9</dd>
+							</div>
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">WCAG 2.2</dt>
+								<dd class="kd-hero__fact-value">AA</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+
+				<a class="kd-hero__cue" href="#grundlagen">
+					Weiter
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+				</a>
+			</section>
+
+			<!-- ============================================ Grundlagen ==== -->
+			<section class="kd-section" id="grundlagen" aria-labelledby="grundlagen-titel">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline">Grundlagen</span>
+							<h2 class="kd-section__title" id="grundlagen-titel">
+								Drei Schichten, eine Wahrheit
+							</h2>
+							<p class="kd-section__lead">
+								Jeder Wert im System hat genau einen Ursprung. Komponenten greifen nie auf Rohwerte
+								zu, sondern auf Rollen — dadurch lassen sich Skin und Theme umschalten, ohne eine
+								einzige Komponente anzufassen.
+							</p>
+						</div>
+						<a class="kd-link-action" href="#tokens">
+							Tokenreferenz
+							<svg class="kd-link-action__icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h14M13 6l6 6-6 6" />
+							</svg>
+						</a>
+					</div>
+
+					<div class="kd-grid kd-grid--3">
+						<article class="kd-card kd-card--interactive kd-reveal" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16" /></svg>
+								</span>
+								<span class="kd-card__eyebrow">Tier 1</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#tokens">Referenz</a></h3>
+								<p class="kd-card__text">
+									Rohwerte ohne Kontext: die zehnstufige Bundesrot-Skala, das Blaugrau, Abstände,
+									Radien, Schatten, Kurven. Nichts davon erscheint direkt in einer Komponente.
+								</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-badge">187 Tokens</span>
+								<span class="kd-mono kd-caption">--kd-ref-*</span>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--interactive kd-reveal kd-delay-1" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24">
+										<circle cx="12" cy="12" r="8" />
+										<path d="M12 4v16" />
+									</svg>
+								</span>
+								<span class="kd-card__eyebrow">Tier 2</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#tokens">System</a></h3>
+								<p class="kd-card__text">
+									Rollen statt Farben: Hintergrund, Vordergrund, Rand, Aktion, Status, Fokus. Diese
+									Schicht kennt Hell und Dunkel — und ist der einzige Ort, an dem ein Theme wirkt.
+								</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-badge kd-badge--accent">102 + 68 Tokens</span>
+								<span class="kd-mono kd-caption">--kd-sys-*</span>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--interactive kd-reveal kd-delay-2" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__icon" aria-hidden="true">
+									<svg viewBox="0 0 24 24">
+										<rect x="4" y="4" width="16" height="16" rx="2" />
+										<path d="M4 10h16" />
+									</svg>
+								</span>
+								<span class="kd-card__eyebrow">Tier 3</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#tokens">Komponente</a></h3>
+								<p class="kd-card__text">
+									Die Stellschrauben je Bauteil: Buttonhöhe, Kartenradius, Hero-Rasterweite. Wer ein
+									Bauteil anpassen muss, ändert hier — und nirgends sonst.
+								</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-badge">79 Tokens</span>
+								<span class="kd-mono kd-caption">--kd-cmp-*</span>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- =========================================== Interaktion ==== -->
+			<section class="kd-section kd-section--subtle" id="interaktion" aria-labelledby="interaktion-titel">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline">Interaktion</span>
+							<h2 class="kd-section__title" id="interaktion-titel">
+								Mouseover-Effekte als eigene Systemschicht
+							</h2>
+							<p class="kd-section__lead">
+								Neun benannte Primitive, jedes als Klasse verfügbar, jedes an Tokens gebunden. Sie
+								laufen nur auf Geräten mit echtem Zeiger und weichen bei
+								<code>prefers-reduced-motion</code> auf reine Zustandswechsel zurück. Fahren Sie mit
+								der Maus über die Felder.
+							</p>
+						</div>
+					</div>
+
+					<div class="kd-grid kd-grid--auto" style="--kd-grid-min: 15rem">
+						<div class="kd-panel kd-lift kd-reveal">
+							<h3 class="kd-h5">Anheben</h3>
+							<p class="kd-caption">Vertikaler Versatz plus Schattenwechsel.</p>
+							<p class="kd-mono kd-caption">.kd-lift</p>
+						</div>
+
+						<div class="kd-panel kd-spotlight kd-reveal kd-delay-1" data-kd-pointer>
+							<h3 class="kd-h5">Lichtschein</h3>
+							<p class="kd-caption">Radialer Schein folgt der Zeigerposition.</p>
+							<p class="kd-mono kd-caption">.kd-spotlight</p>
+						</div>
+
+						<div class="kd-panel kd-edge kd-reveal kd-delay-2">
+							<h3 class="kd-h5">Akzentkante</h3>
+							<p class="kd-caption">Linie fährt von links ein.</p>
+							<p class="kd-mono kd-caption">.kd-edge</p>
+						</div>
+
+						<div class="kd-panel kd-zoom kd-reveal kd-delay-3">
+							<h3 class="kd-h5">Medienzoom</h3>
+							<div class="kd-zoom__media kd-ratio" style="--kd-ratio: 3 / 1; margin-block: 0.75rem">
+								<svg viewBox="0 0 300 100" aria-hidden="true" style="inline-size: 100%; block-size: 100%">
+									<rect width="300" height="100" fill="var(--kd-ref-palette-steel-600)" />
+									<path d="M0 70 60 40 120 62 190 24 260 52 300 34V100H0Z" fill="var(--kd-ref-palette-steel-400)" />
+									<circle cx="248" cy="26" r="12" fill="var(--kd-ref-palette-red-500)" />
+								</svg>
+							</div>
+							<p class="kd-mono kd-caption">.kd-zoom</p>
+						</div>
+
+						<div class="kd-panel kd-reveal kd-delay-4">
+							<h3 class="kd-h5">Unterstreichung</h3>
+							<p class="kd-caption">
+								Wächst von links auf:
+								<a class="kd-underline" href="#interaktion">Beispiellink</a>
+							</p>
+							<p class="kd-mono kd-caption">.kd-underline</p>
+						</div>
+
+						<div class="kd-panel kd-reveal kd-delay-5">
+							<h3 class="kd-h5">Pfeil</h3>
+							<p class="kd-caption">
+								<a class="kd-link-action kd-arrow" href="#interaktion">
+									Weiterlesen
+									<svg class="kd-link-action__icon kd-arrow__icon" viewBox="0 0 24 24" aria-hidden="true">
+										<path d="M5 12h14M13 6l6 6-6 6" />
+									</svg>
+								</a>
+							</p>
+							<p class="kd-mono kd-caption">.kd-arrow</p>
+						</div>
+
+						<div class="kd-panel kd-tilt kd-reveal" data-kd-tilt="6">
+							<h3 class="kd-h5">Neigung</h3>
+							<p class="kd-caption">Höchstens sechs Grad, Werte aus dem JavaScript.</p>
+							<p class="kd-mono kd-caption">.kd-tilt</p>
+						</div>
+
+						<div class="kd-panel kd-reveal kd-delay-1">
+							<h3 class="kd-h5">Einblenden</h3>
+							<p class="kd-caption">Alle Felder dieser Seite blenden beim Scrollen ein.</p>
+							<p class="kd-mono kd-caption">.kd-reveal</p>
+						</div>
+
+						<div class="kd-panel kd-reveal kd-delay-2" style="padding: 0; overflow: hidden">
+							<h3 class="kd-h5" style="padding: 1.5rem 1.5rem 0">Zustandsfläche</h3>
+							<ul style="list-style: none; margin: 0.75rem 0 0; padding: 0">
+								<li>
+									<a class="kd-state" href="#interaktion" style="display: block; padding: 0.75rem 1.5rem"
+										>Listeneintrag</a
+									>
+								</li>
+								<li>
+									<a
+										class="kd-state"
+										href="#interaktion"
+										aria-current="true"
+										style="display: block; padding: 0.75rem 1.5rem"
+										>Aktiver Eintrag</a
+									>
+								</li>
+								<li>
+									<a class="kd-state" href="#interaktion" style="display: block; padding: 0.75rem 1.5rem"
+										>Listeneintrag</a
+									>
+								</li>
+							</ul>
+							<p class="kd-mono kd-caption" style="padding: 0 1.5rem 1.5rem">.kd-state</p>
+						</div>
+					</div>
+
+					<div class="kd-alert kd-alert--info kd-reveal" style="margin-block-start: 2.5rem">
+						<svg class="kd-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+							<circle cx="12" cy="12" r="9" />
+							<path d="M12 11v5M12 8h.01" />
+						</svg>
+						<div class="kd-alert__body">
+							<p class="kd-alert__title">Zeigerlose Geräte und Bewegungsreduktion</p>
+							<p>
+								Sämtliche Effekte stehen in <code>@media (hover: hover) and (pointer: fine)</code>.
+								Auf Touchgeräten bleibt kein Hover-Zustand hängen; bei
+								<code>prefers-reduced-motion: reduce</code> entfallen Versatz und Animation, Farb- und
+								Zustandswechsel bleiben.
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- ============================================ Komponenten ==== -->
+			<section class="kd-section" id="komponenten" aria-labelledby="komponenten-titel">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline">Bausteine</span>
+							<h2 class="kd-section__title" id="komponenten-titel">Komponenten</h2>
+							<p class="kd-section__lead">
+								Farbrollen nach CD Bund: die gefüllte Primäraktion ist blaugrau, Rot bleibt Akzent-
+								und Linkfarbe. Rot als Buttonfläche wäre ein Verstoss gegen die Vorgabe.
+							</p>
+						</div>
+					</div>
+
+					<div class="kd-grid kd-grid--sidebar-end">
+						<div class="kd-stack kd-stack--xl">
+							<div class="kd-stack">
+								<h3 class="kd-h4">Aktionen</h3>
+								<div class="kd-btn-group">
+									<button class="kd-btn kd-btn--filled" type="button">Primäraktion</button>
+									<button class="kd-btn kd-btn--outline" type="button">Sekundär</button>
+									<button class="kd-btn kd-btn--ghost" type="button">Tertiär</button>
+									<button class="kd-btn kd-btn--filled" type="button" disabled>Gesperrt</button>
+								</div>
+								<div class="kd-btn-group">
+									<button class="kd-btn kd-btn--filled kd-btn--sm" type="button">Klein</button>
+									<button class="kd-btn kd-btn--filled" type="button">
+										Mit Icon
+										<svg class="kd-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+											<path d="M5 12h14M13 6l6 6-6 6" />
+										</svg>
+									</button>
+									<button class="kd-btn kd-btn--filled kd-btn--lg" type="button">Gross</button>
+									<a class="kd-btn kd-btn--link" href="#komponenten">
+										Mehr erfahren
+										<svg class="kd-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+											<path d="M5 12h14M13 6l6 6-6 6" />
+										</svg>
+									</a>
+								</div>
+							</div>
+
+							<div class="kd-stack">
+								<h3 class="kd-h4">Formular</h3>
+								<form class="kd-form-grid kd-form-grid--2" novalidate>
+									<div class="kd-field">
+										<label class="kd-label kd-required" for="name">Name</label>
+										<input class="kd-input" id="name" name="name" type="text" required />
+									</div>
+									<div class="kd-field">
+										<label class="kd-label" for="kanton">Kanton</label>
+										<select class="kd-select" id="kanton" name="kanton">
+											<option>Bern</option>
+											<option>Zürich</option>
+											<option>Vaud</option>
+											<option>Ticino</option>
+										</select>
+									</div>
+									<div class="kd-field" style="grid-column: 1 / -1">
+										<label class="kd-label" for="mail">E-Mail</label>
+										<input
+											class="kd-input"
+											id="mail"
+											name="mail"
+											type="email"
+											aria-invalid="true"
+											aria-describedby="mail-fehler"
+											value="beispiel(at)admin.ch"
+										/>
+										<p class="kd-error" id="mail-fehler">
+											<svg viewBox="0 0 24 24" aria-hidden="true" style="inline-size: 1em; block-size: 1em; fill: none; stroke: currentColor; stroke-width: 2">
+												<circle cx="12" cy="12" r="9" /><path d="M12 7v6M12 16h.01" />
+											</svg>
+											Bitte eine gültige E-Mail-Adresse eingeben.
+										</p>
+									</div>
+									<div class="kd-field" style="grid-column: 1 / -1">
+										<label class="kd-choice">
+											<input type="checkbox" />
+											<span class="kd-choice__label"
+												>Ich habe die <a class="kd-link" href="#einsatz">Datenschutzerklärung</a> gelesen.</span
+											>
+										</label>
+									</div>
+								</form>
+							</div>
+
+							<div class="kd-stack">
+								<h3 class="kd-h4">Reiter und Tabelle</h3>
+								<div class="kd-tabs" role="tablist" aria-label="Beispielreiter">
+									<button class="kd-tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">
+										Farbrollen
+									</button>
+									<button class="kd-tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false">
+										Abstände
+									</button>
+								</div>
+								<div class="kd-tabpanel" role="tabpanel" id="panel-1" aria-labelledby="tab-1">
+									<div class="kd-table-wrap">
+										<table class="kd-table">
+											<caption>Auszug aus der semantischen Schicht</caption>
+											<thead>
+												<tr>
+													<th scope="col">Rolle</th>
+													<th scope="col">Verwendung</th>
+													<th scope="col">Hell</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td><code>fg.default</code></td>
+													<td>Fliesstext</td>
+													<td><code>#1f2937</code></td>
+												</tr>
+												<tr>
+													<td><code>link.default</code></td>
+													<td>Links, Akzente</td>
+													<td><code>#d8232a</code></td>
+												</tr>
+												<tr>
+													<td><code>action.primary-bg</code></td>
+													<td>Gefüllte Buttons</td>
+													<td><code>#46596b</code></td>
+												</tr>
+												<tr>
+													<td><code>focus.ring</code></td>
+													<td>Fokusring</td>
+													<td><code>#8655f6</code></td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="kd-tabpanel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden>
+									<div class="kd-table-wrap">
+										<table class="kd-table">
+											<caption>Vertikaler Rhythmus einer Sektion</caption>
+											<thead>
+												<tr>
+													<th scope="col">Breakpoint</th>
+													<th scope="col">Sektionsabstand</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr><td>Basis</td><td>3.5 rem</td></tr>
+												<tr><td>ab 1024 px</td><td>5 rem</td></tr>
+												<tr><td>ab 1920 px</td><td>8 rem</td></tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<aside class="kd-stack kd-stack--lg">
+							<div class="kd-alert kd-alert--success">
+								<svg class="kd-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="m5 13 4 4L19 7" />
+								</svg>
+								<div class="kd-alert__body">
+									<p class="kd-alert__title">Erfolgreich gespeichert</p>
+									<p>Die Änderungen sind übernommen.</p>
+								</div>
+							</div>
+
+							<div class="kd-alert kd-alert--warning">
+								<svg class="kd-alert__icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M12 4 2 20h20L12 4ZM12 10v4M12 17h.01" />
+								</svg>
+								<div class="kd-alert__body">
+									<p class="kd-alert__title">Wartungsfenster</p>
+									<p>Samstag, 03:00 bis 05:00 Uhr.</p>
+								</div>
+							</div>
+
+							<div class="kd-panel">
+								<h3 class="kd-h5">Schlagworte</h3>
+								<div class="kd-cluster kd-cluster--sm" style="margin-block-start: 0.75rem">
+									<button class="kd-tag" type="button" aria-pressed="true">Recht</button>
+									<button class="kd-tag" type="button" aria-pressed="false">Wahlen</button>
+									<button class="kd-tag" type="button" aria-pressed="false">Digitalisierung</button>
+									<button class="kd-tag" type="button" aria-pressed="false">Mehrsprachigkeit</button>
+								</div>
+							</div>
+
+							<details class="kd-accordion__item" open>
+								<summary class="kd-accordion__summary">
+									Häufige Frage
+									<svg class="kd-accordion__marker" viewBox="0 0 24 24" aria-hidden="true">
+										<path d="m6 9 6 6 6-6" />
+									</svg>
+								</summary>
+								<div class="kd-accordion__panel">
+									Das Akkordeon nutzt <code>details</code> und <code>summary</code>. Tastaturbedienung
+									und Zustandsanzeige kommen damit vom Browser.
+								</div>
+							</details>
+						</aside>
+					</div>
+				</div>
+			</section>
+
+			<!-- ================================================ Tokens ==== -->
+			<section class="kd-section kd-section--inverse" id="tokens" aria-labelledby="tokens-titel">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline" style="color: inherit">Referenz</span>
+							<h2 class="kd-section__title" id="tokens-titel">Farbwelt</h2>
+							<p class="kd-section__lead">
+								Bundesrot als Akzent, Blaugrau als Fläche. Die Skalen sind wertgleich mit dem
+								swiss/designsystem — sie sind hier nur anders adressiert.
+							</p>
+						</div>
+					</div>
+
+					<div class="kd-grid kd-grid--2 kd-reveal">
+						<div>
+							<h3 class="kd-h5" style="margin-block-end: 0.75rem">Primary — Bundesrot</h3>
+							<div class="kd-swatches">
+								<div class="kd-swatch kd-swatch--light" data-kd-step="50" style="--kd-swatch: var(--kd-ref-palette-red-50)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="100" style="--kd-swatch: var(--kd-ref-palette-red-100)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="200" style="--kd-swatch: var(--kd-ref-palette-red-200)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="300" style="--kd-swatch: var(--kd-ref-palette-red-300)"></div>
+								<div class="kd-swatch" data-kd-step="400" style="--kd-swatch: var(--kd-ref-palette-red-400)"></div>
+								<div class="kd-swatch" data-kd-step="500" style="--kd-swatch: var(--kd-ref-palette-red-500)"></div>
+								<div class="kd-swatch" data-kd-step="600" style="--kd-swatch: var(--kd-ref-palette-red-600)"></div>
+								<div class="kd-swatch" data-kd-step="700" style="--kd-swatch: var(--kd-ref-palette-red-700)"></div>
+								<div class="kd-swatch" data-kd-step="800" style="--kd-swatch: var(--kd-ref-palette-red-800)"></div>
+								<div class="kd-swatch" data-kd-step="900" style="--kd-swatch: var(--kd-ref-palette-red-900)"></div>
+							</div>
+							<p class="kd-swatch-legend">
+								600 = #d8232a · Referenzrot für Links und Akzente
+							</p>
+						</div>
+
+						<div>
+							<h3 class="kd-h5" style="margin-block-end: 0.75rem">Secondary — Blaugrau</h3>
+							<div class="kd-swatches">
+								<div class="kd-swatch kd-swatch--light" data-kd-step="50" style="--kd-swatch: var(--kd-ref-palette-steel-50)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="100" style="--kd-swatch: var(--kd-ref-palette-steel-100)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="200" style="--kd-swatch: var(--kd-ref-palette-steel-200)"></div>
+								<div class="kd-swatch kd-swatch--light" data-kd-step="300" style="--kd-swatch: var(--kd-ref-palette-steel-300)"></div>
+								<div class="kd-swatch" data-kd-step="400" style="--kd-swatch: var(--kd-ref-palette-steel-400)"></div>
+								<div class="kd-swatch" data-kd-step="500" style="--kd-swatch: var(--kd-ref-palette-steel-500)"></div>
+								<div class="kd-swatch" data-kd-step="600" style="--kd-swatch: var(--kd-ref-palette-steel-600)"></div>
+								<div class="kd-swatch" data-kd-step="700" style="--kd-swatch: var(--kd-ref-palette-steel-700)"></div>
+								<div class="kd-swatch" data-kd-step="800" style="--kd-swatch: var(--kd-ref-palette-steel-800)"></div>
+								<div class="kd-swatch" data-kd-step="900" style="--kd-swatch: var(--kd-ref-palette-steel-900)"></div>
+							</div>
+							<p class="kd-swatch-legend">
+								500 = #46596b · Fläche gefüllter Buttons
+							</p>
+						</div>
+					</div>
+
+					<div class="kd-cluster kd-reveal" style="margin-block-start: 2.5rem">
+						<span class="kd-caption" style="color: inherit; opacity: 0.75">Skin wechseln:</span>
+						<button class="kd-btn kd-btn--negative kd-btn--sm" type="button" data-kd-skin="default" aria-pressed="true">
+							Default
+						</button>
+						<button class="kd-btn kd-btn--negative kd-btn--sm" type="button" data-kd-skin="intranet" aria-pressed="false">
+							Intranet
+						</button>
+						<button class="kd-btn kd-btn--negative kd-btn--sm" type="button" data-kd-skin="freebrand" aria-pressed="false">
+							Freebrand
+						</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- ================================================ Einsatz ==== -->
+			<section class="kd-section" id="einsatz" aria-labelledby="einsatz-titel">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline">Einsatz</span>
+							<h2 class="kd-section__title" id="einsatz-titel">Wofür welches System</h2>
+						</div>
+					</div>
+
+					<div class="kd-grid kd-grid--3">
+						<article class="kd-card kd-card--outline kd-lift kd-reveal">
+							<div class="kd-card__body">
+								<h3 class="kd-card__title">Öffentliche Webseiten</h3>
+								<p class="kd-card__text">
+									admin.ch-Auftritte folgen dem swiss/designsystem. k-design-next liefert dafür die
+									Startseite, den Hero und die Interaktionsebene — wertgleich, aber freier im
+									Seitenaufbau.
+								</p>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--outline kd-lift kd-reveal kd-delay-1">
+							<div class="kd-card__body">
+								<h3 class="kd-card__title">Angular-Fachanwendungen</h3>
+								<p class="kd-card__text">
+									Dort bleibt Oblique gesetzt. Die Tokens dieses Systems lassen sich auf
+									<code>--ob-*</code> abbilden, weil beide Seiten dieselben Rollen kennen.
+								</p>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--outline kd-lift kd-reveal kd-delay-2">
+							<div class="kd-card__body">
+								<h3 class="kd-card__title">Alles ohne Framework</h3>
+								<p class="kd-card__text">
+									Eine CSS-Datei, ein optionales Skript, keine Abhängigkeiten. Der Build läuft ohne
+									Registry-Zugriff — Voraussetzung in geschlossenen Bundesumgebungen.
+								</p>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- =================================================== Footer ==== -->
+		<footer class="kd-footer">
+			<div class="kd-container">
+				<div class="kd-footer__main">
+					<div>
+						<div class="kd-footer__brand">
+							<svg class="kd-logo__shield" viewBox="0 0 40 44" role="img" aria-label="Schweizerische Eidgenossenschaft">
+								<path
+									d="m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z"
+									fill="#ff0000"
+								/>
+								<path
+									d="m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z"
+									fill="#ffffff"
+								/>
+							</svg>
+							<span>
+								<span class="kd-logo__wordmark">
+									Schweizerische Eidgenossenschaft<br />
+									Confédération suisse<br />
+									Confederazione Svizzera<br />
+									Confederaziun svizra
+								</span>
+								<span class="kd-logo__office">Bundeskanzlei BK</span>
+							</span>
+						</div>
+						<p class="kd-footer__text kd-small">
+							Beispielhafte Umsetzung eines Design Systems nach den Vorgaben der Bundeskanzlei. Kein
+							amtliches Angebot.
+						</p>
+					</div>
+
+					<div>
+						<p class="kd-footer__title">Das System</p>
+						<ul class="kd-footer__list">
+							<li><a class="kd-footer__link" href="#grundlagen">Grundlagen</a></li>
+							<li><a class="kd-footer__link" href="#tokens">Design Tokens</a></li>
+							<li><a class="kd-footer__link" href="#komponenten">Komponenten</a></li>
+							<li><a class="kd-footer__link" href="#interaktion">Interaktion</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<p class="kd-footer__title">Grundlagen</p>
+						<ul class="kd-footer__list">
+							<li>
+								<a class="kd-footer__link" href="https://swiss.github.io/designsystem/">
+									Design System der Eidgenossenschaft
+									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+								</a>
+							</li>
+							<li>
+								<a class="kd-footer__link" href="https://oblique.bit.admin.ch/">
+									Oblique
+									<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M9 7h8v8" /></svg>
+								</a>
+							</li>
+							<li><a class="kd-footer__link" href="#einsatz">CD Bund</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<p class="kd-footer__title">Kontakt</p>
+						<p class="kd-footer__text kd-small">
+							Bundeskanzlei BK<br />
+							Bundeshaus West<br />
+							3003 Bern
+						</p>
+						<div class="kd-footer__socials" style="margin-block-start: 1.25rem">
+							<a class="kd-footer__social" href="#inhalt" aria-label="Newsletter">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<rect x="3" y="5" width="18" height="14" rx="2" />
+									<path d="m3 7 9 6 9-6" />
+								</svg>
+							</a>
+							<a class="kd-footer__social" href="#inhalt" aria-label="RSS-Feed">
+								<svg viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M5 19a1 1 0 1 0 0-2 1 1 0 0 0 0 2ZM5 12a7 7 0 0 1 7 7M5 5a14 14 0 0 1 14 14" />
+								</svg>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="kd-footer__legal">
+				<div class="kd-container">
+					<div class="kd-footer__legal-inner">
+						<ul class="kd-footer__legal-list">
+							<li><a href="#einsatz">Impressum</a></li>
+							<li><a href="#einsatz">Rechtliche Grundlagen</a></li>
+							<li><a href="#einsatz">Datenschutz</a></li>
+							<li><a href="#einsatz">Barrierefreiheit</a></li>
+						</ul>
+						<p>© Schweizerische Eidgenossenschaft</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<button class="kd-back-to-top" type="button" data-kd-back-to-top aria-label="Zurück zum Seitenanfang">
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+		</button>
+
+		<script src="../js/kd.js" defer></script>
+	</body>
+</html>

@@ -1,0 +1,443 @@
+/* ==========================================================================
+   Hero
+   ---------------------------------------------------------------------------
+   Der Startbereich ist der einzige Ort, an dem das System bewusst
+   grosszügig auftritt. Er bleibt trotzdem in der Bundesästhetik: keine
+   bunten Verläufe, keine Glaseffekte — sondern Tiefe durch geschichtete,
+   sehr zurückhaltende Ebenen auf dem dunklen Blaugrau.
+
+   Ebenen von hinten nach vorn
+     0  Grundfläche              secondary-900
+     1  Kreuzraster              statisch, ~5 % Deckkraft
+     2  Lichtschein am Zeiger    folgt der Maus, Bundesrot
+     3  Zwei driftende Felder    sehr langsam, nur ohne Bewegungsreduktion
+     4  Bild + Schleier          optional
+     5  Inhalt
+
+   Ohne Zeigergerät und bei prefers-reduced-motion bleiben 2 und 3 ruhig —
+   der Hero verliert dann Bewegung, aber keine Aussage.
+   ========================================================================== */
+
+.kd-hero {
+	position: relative;
+	display: flex;
+	align-items: center;
+	min-block-size: var(--kd-cmp-hero-min-height);
+	padding-block: var(--kd-cmp-hero-padding-block);
+	background-color: var(--kd-cmp-hero-bg);
+	color: var(--kd-cmp-hero-fg);
+	overflow: hidden;
+	isolation: isolate;
+}
+
+/* Ebene 1 · Kreuzraster ---------------------------------------------------- */
+.kd-hero__canvas {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	background-image:
+		linear-gradient(var(--kd-cmp-hero-grid-color) 1px, transparent 1px),
+		linear-gradient(90deg, var(--kd-cmp-hero-grid-color) 1px, transparent 1px);
+	background-size: var(--kd-cmp-hero-grid-size) var(--kd-cmp-hero-grid-size);
+	background-position: center;
+	mask-image: radial-gradient(120% 100% at 50% 0%, black 35%, transparent 78%);
+}
+
+/* Ebene 2 · Lichtschein am Zeiger ------------------------------------------ */
+.kd-hero__glow {
+	position: absolute;
+	inset: 0;
+	z-index: -2;
+	pointer-events: none;
+	opacity: 0;
+	transition: opacity var(--kd-ref-motion-duration-slower) var(--kd-sys-motion-transition-easing);
+	background: radial-gradient(
+		var(--kd-cmp-hero-spotlight-size) circle at var(--kd-pointer-x) var(--kd-pointer-y),
+		var(--kd-cmp-hero-spotlight-color),
+		transparent 62%
+	);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-hero:hover .kd-hero__glow,
+	.kd-hero.is-pointing .kd-hero__glow {
+		opacity: 1;
+	}
+}
+
+/* Ebene 3 · Driftende Felder ----------------------------------------------- */
+.kd-hero__drift {
+	position: absolute;
+	inset: -20%;
+	z-index: -3;
+	pointer-events: none;
+	opacity: var(--kd-cmp-hero-drift-opacity);
+	background:
+		radial-gradient(32rem circle at 18% 28%, var(--kd-cmp-hero-drift-a), transparent 60%),
+		radial-gradient(38rem circle at 82% 72%, var(--kd-cmp-hero-drift-b), transparent 62%);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.kd-hero__drift {
+		animation: kd-hero-drift 34s ease-in-out infinite alternate;
+	}
+}
+
+@keyframes kd-hero-drift {
+	from {
+		transform: translate3d(-2%, -1%, 0) scale(1);
+	}
+	to {
+		transform: translate3d(3%, 2%, 0) scale(1.08);
+	}
+}
+
+/* Ebene 4 · Bild und Schleier ---------------------------------------------- */
+.kd-hero__media {
+	position: absolute;
+	inset: 0;
+	z-index: -4;
+	pointer-events: none;
+}
+
+.kd-hero__media img {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+.kd-hero__media::after {
+	content: '';
+	position: absolute;
+	inset: 0;
+	background: linear-gradient(
+		100deg,
+		var(--kd-cmp-hero-bg) 8%,
+		var(--kd-cmp-hero-veil) 55%,
+		rgba(19, 27, 34, 0.35) 100%
+	);
+}
+
+/* Ebene 5 · Inhalt ---------------------------------------------------------- */
+.kd-hero__inner {
+	position: relative;
+	z-index: 1;
+	inline-size: 100%;
+}
+
+.kd-hero__content {
+	max-inline-size: 56rem;
+	display: flex;
+	flex-direction: column;
+	gap: var(--kd-ref-space-6);
+}
+
+.kd-hero__eyebrow {
+	display: inline-flex;
+	align-items: center;
+	gap: var(--kd-ref-space-3);
+	align-self: flex-start;
+	padding: var(--kd-ref-space-2) var(--kd-ref-space-4);
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-hero-border);
+	border-radius: var(--kd-ref-radius-full);
+	font-size: var(--kd-cmp-hero-eyebrow-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	letter-spacing: var(--kd-ref-font-tracking-wider);
+	text-transform: uppercase;
+	color: var(--kd-cmp-hero-fg-muted);
+	backdrop-filter: blur(2px);
+}
+
+.kd-hero__eyebrow::before {
+	content: '';
+	inline-size: 0.5rem;
+	block-size: 0.5rem;
+	border-radius: var(--kd-ref-radius-full);
+	background-color: var(--kd-cmp-hero-accent);
+	flex: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.kd-hero__eyebrow::before {
+		animation: kd-pulse 2.8s var(--kd-ref-motion-easing-standard) infinite;
+	}
+}
+
+@keyframes kd-pulse {
+	0%,
+	100% {
+		opacity: 1;
+		transform: scale(1);
+	}
+	50% {
+		opacity: 0.45;
+		transform: scale(0.82);
+	}
+}
+
+.kd-hero__title {
+	font-size: var(--kd-sys-text-display-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	line-height: var(--kd-sys-text-display-leading);
+	letter-spacing: var(--kd-ref-font-tracking-tight);
+	color: inherit;
+	text-wrap: balance;
+}
+
+/* Ein einzelnes Wort in Bundesrot — der Akzent der Startseite. */
+.kd-hero__accent {
+	color: var(--kd-cmp-hero-accent);
+	position: relative;
+	white-space: nowrap;
+}
+
+.kd-hero__accent::after {
+	content: '';
+	position: absolute;
+	inset-inline: 0;
+	inset-block-end: 0.08em;
+	block-size: 0.06em;
+	background-color: currentColor;
+	transform: scaleX(0);
+	transform-origin: left center;
+	animation: kd-hero-rule 900ms var(--kd-sys-motion-reveal-easing) 400ms forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.kd-hero__accent::after {
+		animation: none;
+		transform: scaleX(1);
+	}
+}
+
+@keyframes kd-hero-rule {
+	to {
+		transform: scaleX(1);
+	}
+}
+
+.kd-hero__lead {
+	max-inline-size: 44rem;
+	font-size: var(--kd-sys-text-lead-size);
+	line-height: var(--kd-ref-font-leading-snug);
+	color: var(--kd-cmp-hero-fg-muted);
+	text-wrap: pretty;
+}
+
+.kd-hero__actions {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: var(--kd-ref-space-4);
+	margin-block-start: var(--kd-ref-space-2);
+}
+
+/* Kennzahlenzeile am unteren Rand des Hero. */
+.kd-hero__facts {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+	gap: var(--kd-ref-space-6);
+	margin-block-start: var(--kd-ref-space-12);
+	padding-block-start: var(--kd-ref-space-6);
+	border-block-start: var(--kd-ref-border-width-hair) solid var(--kd-cmp-hero-border);
+}
+
+/* dt steht im Markup vor dd; visuell erscheint der Wert oben. */
+.kd-hero__fact {
+	display: flex;
+	flex-direction: column-reverse;
+}
+
+.kd-hero__fact-value {
+	font-size: var(--kd-sys-text-h3-size);
+	font-weight: var(--kd-ref-font-weight-bold);
+	font-variant-numeric: tabular-nums;
+	line-height: var(--kd-ref-font-leading-none);
+}
+
+.kd-hero__fact-label {
+	margin-block-start: var(--kd-ref-space-2);
+	font-size: var(--kd-sys-text-caption-size);
+	letter-spacing: var(--kd-ref-font-tracking-wide);
+	text-transform: uppercase;
+	color: var(--kd-cmp-hero-fg-faint);
+}
+
+/* Bewusst keine Eintrittsanimation auf dem Hero-Inhalt.
+   Ein gestaffelter Auftritt müsste die Elemente vor ihrer Verzögerung auf
+   opacity: 0 halten (animation-fill-mode: backwards) — und damit den
+   wichtigsten Inhalt der Seite an eine laufende Animation koppeln.
+   Leben bekommt der Hero stattdessen aus der aufwachsenden Akzentlinie,
+   dem Lichtschein am Zeiger und den hochzählenden Kennzahlen. */
+
+/* Scrollhinweis. */
+.kd-hero__cue {
+	position: absolute;
+	inset-block-end: var(--kd-ref-space-6);
+	inset-inline-start: 50%;
+	transform: translateX(-50%);
+	display: none;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	font-size: var(--kd-sys-text-caption-size);
+	letter-spacing: var(--kd-ref-font-tracking-wide);
+	text-transform: uppercase;
+	color: var(--kd-cmp-hero-fg-faint);
+	text-decoration: none;
+	transition: color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (min-width: 1024px) {
+	.kd-hero__cue {
+		display: inline-flex;
+	}
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-hero__cue:hover {
+		color: var(--kd-cmp-hero-fg-strong);
+	}
+}
+
+.kd-hero__cue svg {
+	inline-size: 1rem;
+	block-size: 1rem;
+	fill: none;
+	stroke: currentColor;
+	stroke-width: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.kd-hero__cue svg {
+		animation: kd-cue 2.2s var(--kd-ref-motion-easing-standard) infinite;
+	}
+}
+
+@keyframes kd-cue {
+	0%,
+	100% {
+		transform: translateY(0);
+		opacity: 0.6;
+	}
+	50% {
+		transform: translateY(4px);
+		opacity: 1;
+	}
+}
+
+/* --------------------------------------------------------------------------
+   Varianten
+   -------------------------------------------------------------------------- */
+
+/* Geteilt: Text links, Medienfläche rechts. */
+.kd-hero--split .kd-hero__inner {
+	display: grid;
+	gap: var(--kd-ref-space-12);
+	align-items: center;
+}
+
+@media (min-width: 1024px) {
+	.kd-hero--split .kd-hero__inner {
+		grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+	}
+}
+
+.kd-hero__figure {
+	position: relative;
+	border-radius: var(--kd-ref-radius-lg);
+	overflow: hidden;
+	box-shadow: var(--kd-sys-elevation-modal);
+	aspect-ratio: 4 / 3;
+}
+
+.kd-hero__figure img {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+/* Kompakt: Unterseiten-Hero ohne Kennzahlen. */
+.kd-hero--compact {
+	min-block-size: 0;
+	padding-block: var(--kd-ref-space-16);
+}
+
+.kd-hero--compact .kd-hero__title {
+	font-size: var(--kd-sys-text-h1-size);
+}
+
+/* Hell: gleiche Struktur auf hellem Grund, für Fachanwendungen. */
+.kd-hero--light {
+	--kd-cmp-hero-bg: var(--kd-sys-color-bg-subtle);
+	--kd-cmp-hero-fg: var(--kd-sys-color-fg-strong);
+	--kd-cmp-hero-grid-color: rgba(47, 67, 86, 0.07);
+	--kd-cmp-hero-spotlight-color: rgba(216, 35, 42, 0.12);
+	--kd-cmp-hero-fg-strong: var(--kd-sys-color-fg-strong);
+	--kd-cmp-hero-fg-muted: var(--kd-sys-color-fg-muted);
+	--kd-cmp-hero-fg-faint: var(--kd-sys-color-fg-subtle);
+	--kd-cmp-hero-border: var(--kd-sys-color-border-default);
+	--kd-cmp-hero-accent: var(--kd-sys-color-fg-accent);
+	--kd-cmp-hero-drift-opacity: 0.3;
+}
+
+.kd-hero--light .kd-hero__lead {
+	color: var(--kd-sys-color-fg-muted);
+}
+
+.kd-hero--light .kd-hero__eyebrow {
+	border-color: var(--kd-sys-color-border-default);
+	color: var(--kd-sys-color-fg-accent);
+}
+
+.kd-hero--light .kd-hero__accent {
+	color: var(--kd-sys-color-fg-accent);
+}
+
+.kd-hero--light .kd-hero__facts {
+	border-block-start-color: var(--kd-sys-color-border-subtle);
+}
+
+.kd-hero--light .kd-hero__fact-label {
+	color: var(--kd-sys-color-fg-subtle);
+}
+
+.kd-hero--light .kd-hero__drift {
+	opacity: 0.3;
+}
+
+/* Suchfeld im Hero — Einstieg für Fachanwendungen. */
+.kd-hero__search {
+	max-inline-size: 34rem;
+	inline-size: 100%;
+}
+
+.kd-hero__search .kd-input {
+	min-block-size: 3.25rem;
+	border-color: var(--kd-cmp-hero-border);
+	background-color: var(--kd-cmp-hero-field-bg);
+	color: var(--kd-cmp-hero-fg-strong);
+	backdrop-filter: blur(4px);
+}
+
+.kd-hero__search .kd-input::placeholder {
+	color: var(--kd-cmp-hero-fg-faint);
+}
+
+.kd-hero__search .kd-search__icon {
+	stroke: var(--kd-cmp-hero-fg-faint);
+}
+
+.kd-hero--light .kd-hero__search .kd-input {
+	border-color: var(--kd-sys-color-border-default);
+	background-color: var(--kd-sys-color-bg-surface);
+	color: var(--kd-sys-color-fg-default);
+}
+
+.kd-hero--light .kd-hero__search .kd-input::placeholder {
+	color: var(--kd-cmp-field-placeholder);
+}
+
+.kd-hero--light .kd-hero__search .kd-search__icon {
+	stroke: var(--kd-sys-color-fg-subtle);
+}
