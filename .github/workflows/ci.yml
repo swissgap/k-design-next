@@ -1,0 +1,88 @@
+name: CI
+
+# Führt bei jedem Push auf main und bei jedem Pull Request `npm test` aus:
+# Build der Tokens, des CSS, der Showcase-Seite und der Tokenreferenz,
+# danach die Selbstprüfung samt Kontrastnachweis.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build und Prüfungen (Node ${{ matrix.node }})
+    runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        # package.json verlangt Node >= 20; beide gepflegten LTS-Linien werden geprüft.
+        node: ['20', '22']
+
+    steps:
+      - name: Quellen holen
+        uses: actions/checkout@v4
+
+      - name: Node bereitstellen
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      # Bewusst kein `npm ci`: Das Projekt hat weder Laufzeit- noch
+      # Build-Abhängigkeiten. Genau das soll der Lauf mit beweisen — ein
+      # Build, der eine Registry braucht, wäre in abgeschotteten
+      # Bundesumgebungen nicht einsetzbar.
+      - name: Abhängigkeitsfreiheit belegen
+        run: |
+          if [ -d node_modules ]; then
+            echo "node_modules ist vorhanden, obwohl das Projekt keine Abhängigkeiten hat."
+            exit 1
+          fi
+          node --version
+
+      - name: npm test
+        run: npm test
+
+      - name: Build-Ergebnisse gehören nicht ins Repository
+        run: |
+          tracked=$(git ls-files dist docs/TOKENS.md)
+          if [ -n "$tracked" ]; then
+            echo "Erzeugte Dateien sind eingecheckt:"
+            echo "$tracked"
+            exit 1
+          fi
+
+      - name: Erzeugte Dateien vorhanden und nicht leer
+        run: |
+          for file in dist/kd.css dist/kd.min.css dist/showcase.html \
+                      dist/tokens/kd-tokens.css dist/tokens/kd-tokens.json \
+                      docs/TOKENS.md; do
+            if [ ! -s "$file" ]; then
+              echo "Fehlt oder ist leer: $file"
+              exit 1
+            fi
+            printf '%8s  %s\n' "$(wc -c < "$file")" "$file"
+          done
+
+      # Die Showcase-Seite ist in sich geschlossen und lässt sich direkt im
+      # Browser öffnen — damit sind gestalterische Änderungen am Pull Request
+      # sichtbar, ohne das Projekt lokal zu bauen.
+      - name: Showcase-Seite als Artefakt ablegen
+        if: matrix.node == '22'
+        uses: actions/upload-artifact@v4
+        with:
+          name: showcase
+          path: |
+            dist/showcase.html
+            dist/tokens/kd-tokens.json
+          retention-days: 14
+          if-no-files-found: error
