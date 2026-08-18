@@ -176,6 +176,107 @@
 		}
 	}
 
+	/* --------------------------------------------------------------- 4b ---
+	   Wechselnde Hintergrundbilder im Hero
+
+	   data-kd-slideshow am Medien-Container, optional mit Standzeit in
+	   Millisekunden. Sichtbar ist immer genau eine Folie; das Aussehen des
+	   Wechsels steckt vollständig im CSS.
+
+	   WCAG 2.2.2 verlangt, dass sich automatische Bewegung anhalten lässt.
+	   Die Bedienung wird deshalb hier erzeugt, wenn sie im Markup fehlt —
+	   eine Slideshow ohne Pausenschalter soll gar nicht erst entstehen können.
+	   Bei prefers-reduced-motion läuft nichts von selbst; die Punkte bleiben,
+	   damit man trotzdem blättern kann.
+	   ---------------------------------------------------------------------- */
+
+	function initSlideshow() {
+		all('[data-kd-slideshow]').forEach(function (media) {
+			var slides = all('.kd-hero__slide', media);
+			if (slides.length < 2) {
+				if (slides.length === 1) slides[0].classList.add('is-active');
+				return;
+			}
+
+			var interval = parseInt(media.getAttribute('data-kd-slideshow'), 10) || 7000;
+			var hero = media.closest('.kd-hero') || media.parentNode;
+			var controls = hero.querySelector('.kd-hero__slides-controls');
+			var timer = null;
+			var index = Math.max(
+				0,
+				slides.findIndex(function (slide) {
+					return slide.classList.contains('is-active');
+				})
+			);
+
+			function show(next) {
+				index = (next + slides.length) % slides.length;
+				slides.forEach(function (slide, position) {
+					slide.classList.toggle('is-active', position === index);
+				});
+				if (!controls) return;
+				all('.kd-hero__slides-dot', controls).forEach(function (dot, position) {
+					if (position === index) dot.setAttribute('aria-current', 'true');
+					else dot.removeAttribute('aria-current');
+				});
+			}
+
+			function stop() {
+				if (timer === null) return;
+				clearInterval(timer);
+				timer = null;
+			}
+
+			function start() {
+				if (timer !== null || reduced.matches) return;
+				timer = setInterval(function () {
+					show(index + 1);
+				}, interval);
+			}
+
+			function setRunning(running) {
+				if (running) start();
+				else stop();
+				if (!controls) return;
+				var toggle = controls.querySelector('.kd-hero__slides-toggle');
+				if (!toggle) return;
+				// aria-pressed beschreibt den Schalter „angehalten", nicht den Lauf.
+				toggle.setAttribute('aria-pressed', String(!running));
+				toggle.setAttribute('aria-label', running ? 'Bildwechsel anhalten' : 'Bildwechsel fortsetzen');
+			}
+
+			if (controls) {
+				var toggle = controls.querySelector('.kd-hero__slides-toggle');
+				if (toggle) {
+					toggle.addEventListener('click', function () {
+						setRunning(timer === null);
+					});
+				}
+				all('.kd-hero__slides-dot', controls).forEach(function (dot, position) {
+					dot.addEventListener('click', function () {
+						show(position);
+						setRunning(false); // eine bewusste Wahl beendet den Automatiklauf
+					});
+				});
+				controls.hidden = false;
+			}
+
+			// Im Hintergrundtab weiterzublenden kostet Strom und bringt nichts.
+			document.addEventListener('visibilitychange', function () {
+				if (document.hidden) stop();
+				else if (controls) {
+					var toggle = controls.querySelector('.kd-hero__slides-toggle');
+					if (!toggle || toggle.getAttribute('aria-pressed') !== 'true') start();
+				} else {
+					start();
+				}
+			});
+
+			show(index);
+			setRunning(!reduced.matches);
+		});
+	}
+
 	/* ---------------------------------------------------------------- 5 ---
 	   Aufklappen
 	   data-kd-toggle="ziel-id" schaltet hidden und aria-expanded gemeinsam.
@@ -399,6 +500,7 @@
 		initTilt();
 		initReveal();
 		initCounters();
+		initSlideshow();
 		initToggles();
 		initTabs();
 		initBackToTop();

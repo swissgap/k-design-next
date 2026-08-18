@@ -111,12 +111,197 @@
 	content: '';
 	position: absolute;
 	inset: 0;
+	/* Dreistufig: links trägt der Schleier den Text, rechts bleibt das Motiv
+	   lesbar. Wer ein helleres Bild einsetzt, verschiebt die drei Stufen —
+	   die Textfarben bleiben davon unberührt. */
 	background: linear-gradient(
-		100deg,
-		var(--kd-cmp-hero-bg) 8%,
-		var(--kd-cmp-hero-veil) 55%,
-		rgba(19, 27, 34, 0.35) 100%
+		var(--kd-cmp-hero-veil-angle),
+		var(--kd-cmp-hero-veil-start) 0%,
+		var(--kd-cmp-hero-veil-mid) 48%,
+		var(--kd-cmp-hero-veil-end) 100%
 	);
+}
+
+/* Ebene 4b · Wechselnde Hintergrundbilder ----------------------------------
+   Mehrere Bilder liegen deckungsgleich übereinander; sichtbar ist immer
+   genau eines. Gewechselt wird über die Klasse .is-active, gesetzt von
+   js/kd.js — im CSS steht nur, wie der Wechsel aussieht.
+
+   WCAG 2.2.2 verlangt eine Möglichkeit, automatische Bewegung anzuhalten,
+   sobald sie länger als fünf Sekunden läuft. Die Bedienung ist deshalb Teil
+   der Komponente und nicht optional.
+   -------------------------------------------------------------------------- */
+
+.kd-hero__media--slides {
+	display: grid;
+}
+
+.kd-hero__slide {
+	grid-area: 1 / 1;
+	inline-size: 100%;
+	block-size: 100%;
+	opacity: 0;
+	transition: opacity var(--kd-cmp-hero-slide-fade) var(--kd-sys-motion-transition-easing);
+}
+
+.kd-hero__slide.is-active {
+	opacity: 1;
+}
+
+.kd-hero__slide > img,
+.kd-hero__slide > picture,
+.kd-hero__slide > picture > img,
+.kd-hero__slide > svg {
+	inline-size: 100%;
+	block-size: 100%;
+	object-fit: cover;
+}
+
+/* Ohne Skript bleibt das erste Bild stehen, statt dass alle unsichtbar sind. */
+.kd-no-js .kd-hero__slide:first-child {
+	opacity: 1;
+}
+
+/* Sehr langsame Bewegung im sichtbaren Bild — nur bei aktiver Folie. */
+.kd-hero__media--drift .kd-hero__slide.is-active > img,
+.kd-hero__media--drift .kd-hero__slide.is-active > picture > img,
+.kd-hero__media--drift .kd-hero__slide.is-active > svg {
+	animation: kd-slide-drift var(--kd-cmp-hero-slide-drift-time) linear forwards;
+}
+
+@keyframes kd-slide-drift {
+	from {
+		transform: scale(1);
+	}
+	to {
+		transform: scale(var(--kd-cmp-hero-slide-drift));
+	}
+}
+
+/* Bedienung: Anhalten und direkte Wahl einer Folie. */
+.kd-hero__slides-controls {
+	position: absolute;
+	inset-block-end: var(--kd-ref-space-6);
+	inset-inline-end: var(--kd-ref-space-6);
+	z-index: 2;
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-3);
+}
+
+.kd-hero__slides-toggle {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	inline-size: 2.75rem;
+	block-size: 2.75rem;
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-hero-border);
+	border-radius: var(--kd-ref-radius-full);
+	background-color: var(--kd-cmp-hero-field-bg);
+	color: var(--kd-cmp-hero-fg-strong);
+	backdrop-filter: blur(4px);
+	cursor: pointer;
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		border-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-hero__slides-toggle:hover {
+		background-color: var(--kd-sys-color-bg-accent);
+		border-color: var(--kd-sys-color-bg-accent);
+	}
+}
+
+.kd-hero__slides-toggle svg {
+	inline-size: 1.1rem;
+	block-size: 1.1rem;
+	fill: currentColor;
+	stroke: none;
+}
+
+/* Zwei Symbole, eines je Zustand — der Zustand steht in aria-pressed. */
+.kd-hero__slides-toggle .kd-icon-play {
+	display: none;
+}
+
+.kd-hero__slides-toggle[aria-pressed='true'] .kd-icon-play {
+	display: block;
+}
+
+.kd-hero__slides-toggle[aria-pressed='true'] .kd-icon-pause {
+	display: none;
+}
+
+.kd-hero__slides-dots {
+	display: flex;
+	align-items: center;
+	gap: var(--kd-ref-space-2);
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.kd-hero__slides-dot {
+	inline-size: 0.6rem;
+	block-size: 0.6rem;
+	padding: 0;
+	border: var(--kd-ref-border-width-hair) solid var(--kd-cmp-hero-fg-faint);
+	border-radius: var(--kd-ref-radius-full);
+	background-color: transparent;
+	cursor: pointer;
+	transition:
+		background-color var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing),
+		transform var(--kd-sys-motion-hover-duration) var(--kd-sys-motion-hover-easing);
+}
+
+/* Trefferfläche auf 24 px vergrössern, ohne den Punkt zu vergrössern. */
+.kd-hero__slides-dot::after {
+	content: '';
+	position: absolute;
+	inset: 50% auto auto 50%;
+	inline-size: 24px;
+	block-size: 24px;
+	transform: translate(-50%, -50%);
+}
+
+.kd-hero__slides-dot {
+	position: relative;
+}
+
+@media (hover: hover) and (pointer: fine) {
+	.kd-hero__slides-dot:hover {
+		background-color: var(--kd-cmp-hero-fg-muted);
+	}
+}
+
+.kd-hero__slides-dot[aria-current='true'] {
+	background-color: var(--kd-cmp-hero-accent);
+	border-color: var(--kd-cmp-hero-accent);
+	transform: scale(1.2);
+}
+
+/* Der Scrollhinweis sitzt sonst unter der Bedienung. */
+.kd-hero:has(.kd-hero__slides-controls) .kd-hero__cue {
+	inset-inline-start: var(--kd-ref-space-6);
+	transform: none;
+}
+
+/* Über einem Foto werden die driftenden Farbfelder zurückgenommen. */
+.kd-hero:has(.kd-hero__media) .kd-hero__drift {
+	opacity: var(--kd-cmp-hero-drift-opacity-photo);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.kd-hero__slide {
+		transition: none;
+	}
+
+	.kd-hero__media--drift .kd-hero__slide.is-active > img,
+	.kd-hero__media--drift .kd-hero__slide.is-active > picture > img,
+	.kd-hero__media--drift .kd-hero__slide.is-active > svg {
+		animation: none;
+	}
 }
 
 /* Ebene 5 · Inhalt ---------------------------------------------------------- */

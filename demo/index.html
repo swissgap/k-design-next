@@ -162,6 +162,61 @@
 		<main id="inhalt">
 			<!-- ================================================== Hero ==== -->
 			<section class="kd-hero" data-kd-pointer aria-labelledby="hero-titel">
+				<!-- Ebene 4: wechselnde Hintergrundbilder. Hier als Inline-SVG, damit die
+				     Seite ohne Bilddateien auskommt; in der Praxis stehen hier <picture>
+				     mit srcset. Die Folien sind dekorativ und deshalb aria-hidden. -->
+				<div
+					class="kd-hero__media kd-hero__media--slides kd-hero__media--drift"
+					data-kd-slideshow="7000"
+					aria-hidden="true"
+				>
+					<div class="kd-hero__slide is-active">
+						<svg viewBox="0 0 1600 640" preserveAspectRatio="xMidYMax slice" role="img" aria-hidden="true">
+							<defs>
+								<linearGradient id="kd-sky-0" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0" stop-color="var(--kd-ref-palette-steel-800)" />
+									<stop offset="1" stop-color="var(--kd-ref-palette-steel-500)" />
+								</linearGradient>
+							</defs>
+							<rect width="1600" height="640" fill="url(#kd-sky-0)" />
+							<circle cx="1240" cy="190" r="78" fill="var(--kd-ref-palette-red-500)" opacity="0.34" />
+							<path d="M760 420 900 300 1010 360 1140 250 1290 370 1430 290 1600 380V640H760Z" fill="var(--kd-ref-palette-steel-400)" opacity="0.85" />
+							<path d="M560 520 720 400 860 470 1010 360 1180 480 1360 400 1600 500V640H560Z" fill="var(--kd-ref-palette-steel-700)" />
+							<path d="M0 600 240 520 460 580 700 480 960 570 1220 500 1600 590V640H0Z" fill="var(--kd-ref-palette-steel-900)" />
+						</svg>
+					</div>
+					<div class="kd-hero__slide">
+						<svg viewBox="0 0 1600 640" preserveAspectRatio="xMidYMax slice" role="img" aria-hidden="true">
+							<defs>
+								<linearGradient id="kd-sky-1" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0" stop-color="var(--kd-ref-palette-steel-900)" />
+									<stop offset="1" stop-color="var(--kd-ref-palette-steel-600)" />
+								</linearGradient>
+							</defs>
+							<rect width="1600" height="640" fill="url(#kd-sky-1)" />
+							<circle cx="1120" cy="150" r="70" fill="var(--kd-ref-palette-steel-200)" opacity="0.34" />
+							<path d="M760 420 900 300 1010 360 1140 250 1290 370 1430 290 1600 380V640H760Z" fill="var(--kd-ref-palette-steel-500)" opacity="0.85" />
+							<path d="M560 520 720 400 860 470 1010 360 1180 480 1360 400 1600 500V640H560Z" fill="var(--kd-ref-palette-steel-800)" />
+							<path d="M0 600 240 520 460 580 700 480 960 570 1220 500 1600 590V640H0Z" fill="var(--kd-ref-palette-neutral-1000)" />
+						</svg>
+					</div>
+					<div class="kd-hero__slide">
+						<svg viewBox="0 0 1600 640" preserveAspectRatio="xMidYMax slice" role="img" aria-hidden="true">
+							<defs>
+								<linearGradient id="kd-sky-2" x1="0" y1="0" x2="0" y2="1">
+									<stop offset="0" stop-color="var(--kd-ref-palette-steel-700)" />
+									<stop offset="1" stop-color="var(--kd-ref-palette-red-800)" />
+								</linearGradient>
+							</defs>
+							<rect width="1600" height="640" fill="url(#kd-sky-2)" />
+							<circle cx="1330" cy="240" r="92" fill="var(--kd-ref-palette-red-400)" opacity="0.34" />
+							<path d="M760 420 900 300 1010 360 1140 250 1290 370 1430 290 1600 380V640H760Z" fill="var(--kd-ref-palette-steel-500)" opacity="0.85" />
+							<path d="M560 520 720 400 860 470 1010 360 1180 480 1360 400 1600 500V640H560Z" fill="var(--kd-ref-palette-steel-800)" />
+							<path d="M0 600 240 520 460 580 700 480 960 570 1220 500 1600 590V640H0Z" fill="var(--kd-ref-palette-steel-900)" />
+						</svg>
+					</div>
+				</div>
+
 				<div class="kd-hero__drift" aria-hidden="true"></div>
 				<div class="kd-hero__canvas" aria-hidden="true"></div>
 				<div class="kd-hero__glow" aria-hidden="true"></div>
@@ -195,7 +250,7 @@
 						<dl class="kd-hero__facts">
 							<div class="kd-hero__fact">
 								<dt class="kd-hero__fact-label">Design Tokens</dt>
-								<dd class="kd-hero__fact-value" data-kd-count="436">436</dd>
+								<dd class="kd-hero__fact-value" data-kd-count="447">447</dd>
 							</div>
 							<div class="kd-hero__fact">
 								<dt class="kd-hero__fact-label">Tokenschichten</dt>
@@ -211,6 +266,28 @@
 							</div>
 						</dl>
 					</div>
+				</div>
+
+				<!-- Pflicht nach WCAG 2.2.2, sobald sich der Hintergrund von selbst bewegt. -->
+				<div class="kd-hero__slides-controls" hidden>
+					<button
+						class="kd-hero__slides-toggle"
+						type="button"
+						aria-pressed="false"
+						aria-label="Bildwechsel anhalten"
+					>
+						<svg class="kd-icon-pause" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M8 5h3v14H8zM13 5h3v14h-3z" />
+						</svg>
+						<svg class="kd-icon-play" viewBox="0 0 24 24" aria-hidden="true">
+							<path d="M8 5l11 7-11 7z" />
+						</svg>
+					</button>
+					<ul class="kd-hero__slides-dots">
+						<li><button class="kd-hero__slides-dot" type="button" aria-current="true" aria-label="Bild 1 anzeigen"></button></li>
+						<li><button class="kd-hero__slides-dot" type="button" aria-label="Bild 2 anzeigen"></button></li>
+						<li><button class="kd-hero__slides-dot" type="button" aria-label="Bild 3 anzeigen"></button></li>
+					</ul>
 				</div>
 
 				<a class="kd-hero__cue" href="#grundlagen">
