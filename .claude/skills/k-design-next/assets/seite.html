@@ -1,0 +1,328 @@
+<!doctype html>
+<!--
+	Startvorlage k-design-next.
+	Enthält das vollständige Bundes-Chrome, einen Hero, eine Inhaltssektion und
+	den Footer. Pfade zu dist/kd.css und js/kd.js an das Projekt anpassen.
+	Platzhalter sind mit ▸ markiert.
+-->
+<html lang="de" class="kd-no-js">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>▸ Seitentitel — ▸ Amtsname</title>
+		<meta name="description" content="▸ Ein Satz, der die Seite beschreibt." />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="stylesheet" href="dist/kd.css" />
+		<link
+			rel="icon"
+			href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 44'%3E%3Cpath d='m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z' fill='%23ff0000'/%3E%3Cpath d='m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z' fill='%23fff'/%3E%3C/svg%3E"
+		/>
+	</head>
+	<body>
+		<a class="kd-skip-link" href="#inhalt">Direkt zum Inhalt</a>
+
+		<!-- Top-Bar: Behörden links, Sprachwechsler rechts -->
+		<div class="kd-topbar">
+			<div class="kd-container">
+				<div class="kd-topbar__inner">
+					<button class="kd-topbar__authorities" type="button" data-kd-toggle="behoerden">
+						Alle Schweizer Bundesbehörden
+						<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /></svg>
+					</button>
+
+					<div class="kd-topbar__meta">
+						<nav aria-label="Sprachwahl">
+							<ul class="kd-lang">
+								<li><a class="kd-lang__link" href="/de/" aria-current="true" lang="de">de</a></li>
+								<li><a class="kd-lang__link" href="/fr/" lang="fr">fr</a></li>
+								<li><a class="kd-lang__link" href="/it/" lang="it">it</a></li>
+								<li><a class="kd-lang__link" href="/rm/" lang="rm">rm</a></li>
+								<li><a class="kd-lang__link" href="/en/" lang="en">en</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="kd-topbar__drawer" id="behoerden" hidden>
+			<div class="kd-container">
+				<div class="kd-topbar__drawer-inner">
+					<div>
+						<p class="kd-caption">Wo befinde ich mich?</p>
+						<p><strong>Schweizerische Eidgenossenschaft</strong> › ▸ Amtsname</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Header: Wappen, Wortmarke, Amtsname, Suche -->
+		<header class="kd-header">
+			<div class="kd-container">
+				<div class="kd-header__inner">
+					<a class="kd-logo" href="/">
+						<svg
+							class="kd-logo__shield"
+							viewBox="0 0 40 44"
+							role="img"
+							aria-label="Schweizerische Eidgenossenschaft"
+						>
+							<path
+								d="m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z"
+								fill="#ff0000"
+							/>
+							<path
+								d="m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z"
+								fill="#ffffff"
+							/>
+						</svg>
+						<span class="kd-logo__text">
+							<span class="kd-logo__wordmark">
+								Schweizerische Eidgenossenschaft<br />
+								Confédération suisse<br />
+								Confederazione Svizzera<br />
+								Confederaziun svizra
+							</span>
+							<span class="kd-logo__office">▸ Amtsname</span>
+						</span>
+					</a>
+
+					<div class="kd-header__actions">
+						<div class="kd-search kd-hide-below-lg" style="min-inline-size: 18rem">
+							<svg class="kd-search__icon" viewBox="0 0 24 24" aria-hidden="true">
+								<circle cx="11" cy="11" r="7" />
+								<path d="m20 20-3.5-3.5" />
+							</svg>
+							<label class="kd-sr-only" for="suche">Suchbegriff</label>
+							<input class="kd-input" id="suche" type="search" placeholder="Suchen" />
+						</div>
+
+						<button class="kd-burger" type="button" data-kd-toggle="mobilnav" aria-label="Menü">
+							<span class="kd-burger__box">
+								<span class="kd-burger__bar"></span>
+								<span class="kd-burger__bar"></span>
+								<span class="kd-burger__bar"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+		</header>
+
+		<!-- Navigation -->
+		<nav class="kd-mainnav" aria-label="Hauptnavigation">
+			<div class="kd-container">
+				<ul class="kd-mainnav__list">
+					<li><a class="kd-mainnav__link" href="#inhalt" aria-current="page">▸ Erster Punkt</a></li>
+					<li><a class="kd-mainnav__link" href="#zweiter">▸ Zweiter Punkt</a></li>
+					<li><a class="kd-mainnav__link" href="#dritter">▸ Dritter Punkt</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<nav class="kd-mobilenav" id="mobilnav" aria-label="Hauptnavigation, mobil" hidden>
+			<div class="kd-container">
+				<ul class="kd-mobilenav__list">
+					<li><a class="kd-mobilenav__link" href="#inhalt" aria-current="page">▸ Erster Punkt</a></li>
+					<li><a class="kd-mobilenav__link" href="#zweiter">▸ Zweiter Punkt</a></li>
+					<li><a class="kd-mobilenav__link" href="#dritter">▸ Dritter Punkt</a></li>
+				</ul>
+			</div>
+		</nav>
+
+		<main id="inhalt">
+			<!-- Hero: fünf Ebenen, die drei Hintergrundebenen tragen keine Information -->
+			<section class="kd-hero" data-kd-pointer aria-labelledby="hero-titel">
+				<div class="kd-hero__drift" aria-hidden="true"></div>
+				<div class="kd-hero__canvas" aria-hidden="true"></div>
+				<div class="kd-hero__glow" aria-hidden="true"></div>
+
+				<div class="kd-container kd-hero__inner">
+					<div class="kd-hero__content">
+						<span class="kd-hero__eyebrow">▸ Auszeichnung</span>
+
+						<h1 class="kd-hero__title" id="hero-titel">
+							▸ Titel mit einem <span class="kd-hero__accent">Akzent</span> darin.
+						</h1>
+
+						<p class="kd-hero__lead">▸ Ein bis drei Sätze, die die Seite einordnen.</p>
+
+						<div class="kd-hero__actions">
+							<a class="kd-btn kd-btn--negative-filled kd-btn--lg" href="#zweiter">
+								▸ Primäraktion
+								<svg class="kd-btn__icon" viewBox="0 0 24 24" aria-hidden="true">
+									<path d="M5 12h14M13 6l6 6-6 6" />
+								</svg>
+							</a>
+							<a class="kd-btn kd-btn--negative kd-btn--lg" href="#dritter">▸ Sekundäraktion</a>
+						</div>
+
+						<dl class="kd-hero__facts">
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">▸ Beschriftung</dt>
+								<dd class="kd-hero__fact-value" data-kd-count="120">120</dd>
+							</div>
+							<div class="kd-hero__fact">
+								<dt class="kd-hero__fact-label">▸ Beschriftung</dt>
+								<dd class="kd-hero__fact-value" data-kd-count="26">26</dd>
+							</div>
+						</dl>
+					</div>
+				</div>
+
+				<a class="kd-hero__cue" href="#zweiter">
+					Weiter
+					<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6" /></svg>
+				</a>
+			</section>
+
+			<!-- Kachelsektion -->
+			<section class="kd-section" id="zweiter" aria-labelledby="s-zweiter">
+				<div class="kd-container">
+					<div class="kd-section__head kd-reveal">
+						<div class="kd-section__headline">
+							<span class="kd-overline">▸ Auszeichnung</span>
+							<h2 class="kd-section__title" id="s-zweiter">▸ Sektionstitel</h2>
+							<p class="kd-section__lead">▸ Ein erklärender Satz.</p>
+						</div>
+						<a class="kd-link-action" href="#dritter">
+							▸ Alle ansehen
+							<svg class="kd-link-action__icon" viewBox="0 0 24 24" aria-hidden="true">
+								<path d="M5 12h14M13 6l6 6-6 6" />
+							</svg>
+						</a>
+					</div>
+
+					<div class="kd-grid kd-grid--3">
+						<article class="kd-card kd-card--interactive kd-reveal" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__eyebrow">▸ Kategorie</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#dritter">▸ Titel</a></h3>
+								<p class="kd-card__text">▸ Zwei bis drei Sätze Beschreibung.</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-card__meta">▸ Metainformation</span>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--interactive kd-reveal kd-delay-1" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__eyebrow">▸ Kategorie</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#dritter">▸ Titel</a></h3>
+								<p class="kd-card__text">▸ Zwei bis drei Sätze Beschreibung.</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-card__meta">▸ Metainformation</span>
+							</div>
+						</article>
+
+						<article class="kd-card kd-card--interactive kd-reveal kd-delay-2" data-kd-pointer>
+							<div class="kd-card__body">
+								<span class="kd-card__eyebrow">▸ Kategorie</span>
+								<h3 class="kd-card__title"><a class="kd-stretched" href="#dritter">▸ Titel</a></h3>
+								<p class="kd-card__text">▸ Zwei bis drei Sätze Beschreibung.</p>
+							</div>
+							<div class="kd-card__footer">
+								<span class="kd-card__meta">▸ Metainformation</span>
+							</div>
+						</article>
+					</div>
+				</div>
+			</section>
+
+			<!-- Ruhiges Band mit Fliesstext -->
+			<section class="kd-section kd-section--subtle" id="dritter" aria-labelledby="s-dritter">
+				<div class="kd-container">
+					<div class="kd-prose kd-reveal">
+						<h2 id="s-dritter">▸ Textabschnitt</h2>
+						<p>▸ Fliesstext. Der Container begrenzt die Zeilenlänge automatisch.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Footer -->
+		<footer class="kd-footer">
+			<div class="kd-container">
+				<div class="kd-footer__main">
+					<div>
+						<div class="kd-footer__brand">
+							<svg
+								class="kd-logo__shield"
+								viewBox="0 0 40 44"
+								role="img"
+								aria-label="Schweizerische Eidgenossenschaft"
+							>
+								<path
+									d="m38.5778 3.2s-7.2-3.2-19.3-3.2c-12.00002 0-19.2000222 3.2-19.2000222 3.2s-.6999998 14.1 2.1000022 22.1c4.8 14 17.20002 18 17.20002 18s12.3-3.9 17.2-18c2.6-8 2-22.1 2-22.1z"
+									fill="#ff0000"
+								/>
+								<path
+									d="m32.0779 15.4v7.8h-9v9.1h-7.7v-9.1h-8.99997v-7.8h8.99997v-9.09995h7.7v9.09995z"
+									fill="#ffffff"
+								/>
+							</svg>
+							<span>
+								<span class="kd-logo__wordmark">
+									Schweizerische Eidgenossenschaft<br />
+									Confédération suisse<br />
+									Confederazione Svizzera<br />
+									Confederaziun svizra
+								</span>
+								<span class="kd-logo__office">▸ Amtsname</span>
+							</span>
+						</div>
+						<p class="kd-footer__text kd-small">▸ Kurzbeschreibung der Einheit.</p>
+					</div>
+
+					<div>
+						<p class="kd-footer__title">▸ Spaltentitel</p>
+						<ul class="kd-footer__list">
+							<li><a class="kd-footer__link" href="#inhalt">▸ Eintrag</a></li>
+							<li><a class="kd-footer__link" href="#inhalt">▸ Eintrag</a></li>
+						</ul>
+					</div>
+
+					<div>
+						<p class="kd-footer__title">Kontakt</p>
+						<p class="kd-footer__text kd-small">
+							▸ Amtsname<br />
+							▸ Strasse<br />
+							▸ PLZ Ort
+						</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="kd-footer__legal">
+				<div class="kd-container">
+					<div class="kd-footer__legal-inner">
+						<ul class="kd-footer__legal-list">
+							<li><a href="#inhalt">Impressum</a></li>
+							<li><a href="#inhalt">Rechtliche Grundlagen</a></li>
+							<li><a href="#inhalt">Datenschutz</a></li>
+							<li><a href="#inhalt">Barrierefreiheit</a></li>
+						</ul>
+						<p>© Schweizerische Eidgenossenschaft</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+
+		<button
+			class="kd-back-to-top"
+			type="button"
+			data-kd-back-to-top
+			aria-label="Zurück zum Seitenanfang"
+		>
+			<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 19V5M6 11l6-6 6 6" /></svg>
+		</button>
+
+		<script src="js/kd.js" defer></script>
+	</body>
+</html>
