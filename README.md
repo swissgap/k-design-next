@@ -1,5 +1,7 @@
 # k-design-next
 
+[![CI](https://github.com/swissgap/k-design-next/actions/workflows/ci.yml/badge.svg)](https://github.com/swissgap/k-design-next/actions/workflows/ci.yml)
+
 Design System auf Basis der Vorgaben der Bundeskanzlei.
 
 Es übernimmt Farbwelt, Typografie und Formensprache aus dem
@@ -133,6 +135,12 @@ npm run check
 5. 34 Farbpaare in beiden Themes gegen die WCAG-Schwellen 4.5:1 bzw. 3:1.
 
 Der Build bricht ab, sobald eine dieser Prüfungen fehlschlägt.
+
+Dieselben Prüfungen laufen in der CI (`.github/workflows/ci.yml`) bei jedem
+Push auf `main` und bei jedem Pull Request, gegen Node 20 und 22. Der Lauf
+belegt zusätzlich, dass das Projekt ohne `npm install` baut, und legt die
+gebaute Showcase-Seite als Artefakt ab — so lassen sich gestalterische
+Änderungen am Pull Request ansehen, ohne lokal zu bauen.
 
 ---
 
