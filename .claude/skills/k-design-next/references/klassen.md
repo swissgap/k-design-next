@@ -1,6 +1,6 @@
 # Klassenreferenz
 
-258 Klassen, alle mit `kd-`-Präfix, BEM-artig: Block `.kd-card`, Element
+267 Klassen, alle mit `kd-`-Präfix, BEM-artig: Block `.kd-card`, Element
 `.kd-card__title`, Modifier `.kd-card--interactive`.
 
 ## Inhalt
@@ -269,6 +269,7 @@ lässt sich eine Klasse umbenennen, ohne Verhalten zu brechen.
 | Attribut | Wirkung |
 |---|---|
 | `data-kd-pointer` | schreibt `--kd-pointer-x/-y` auf das Element |
+| `data-kd-slideshow="7000"` | wechselnde Hero-Hintergrundbilder, Standzeit in Millisekunden |
 | `data-kd-tilt="6"` | Neigung, Wert in Grad |
 | `data-kd-count="436"` | zählt beim Erscheinen hoch |
 | `data-kd-count-suffix="%"` | Zusatz hinter der Zahl |

@@ -37,6 +37,10 @@
     "spotlight-color":  { "$value": "rgba(216, 35, 42, 0.30)",    "$type": "color" },
     "spotlight-size":   { "$value": "46rem",                      "$type": "dimension" },
     "veil":             { "$value": "rgba(19, 27, 34, 0.55)",     "$type": "color" },
+    "veil-start":       { "$value": "rgba(19, 27, 34, 0.94)",     "$type": "color", "$description": "Schleier über dem Bild, Textseite — muss den Titel tragen" },
+    "veil-mid":         { "$value": "rgba(19, 27, 34, 0.62)",     "$type": "color" },
+    "veil-end":         { "$value": "rgba(19, 27, 34, 0.24)",     "$type": "color", "$description": "Bildseite — hier soll das Motiv lesbar bleiben" },
+    "veil-angle":       { "$value": "100deg",                     "$type": "number" },
     "eyebrow-size":     { "$value": "{text.overline-size}",       "$type": "dimension" },
     "fg-strong":        { "$value": "{palette.neutral.0}",        "$type": "color" },
     "fg-muted":         { "$value": "rgba(255, 255, 255, 0.82)",  "$type": "color" },
@@ -46,7 +50,12 @@
     "drift-a":          { "$value": "rgba(216, 35, 42, 0.22)",    "$type": "color" },
     "drift-b":          { "$value": "rgba(70, 89, 107, 0.50)",    "$type": "color" },
     "drift-opacity":    { "$value": "0.55",                       "$type": "number" },
-    "field-bg":         { "$value": "rgba(255, 255, 255, 0.08)",  "$type": "color" }
+    "field-bg":         { "$value": "rgba(255, 255, 255, 0.08)",  "$type": "color" },
+    "slide-fade":       { "$value": "1200ms",                     "$type": "duration", "$description": "Überblendung zwischen zwei Hintergrundbildern" },
+    "slide-interval":   { "$value": "7000ms",                     "$type": "duration", "$description": "Standstandzeit je Bild; das Skript liest den Wert aus data-kd-slideshow, dieses Token dokumentiert die Vorgabe" },
+    "slide-drift":      { "$value": "1.06",                       "$type": "number",   "$description": "Endmassstab der langsamen Bildbewegung" },
+    "slide-drift-time": { "$value": "14s",                        "$type": "duration" },
+    "drift-opacity-photo": { "$value": "0.18",                    "$type": "number",   "$description": "Driftende Farbfelder werden über einem Foto zurückgenommen, sonst wird der Hintergrund unruhig" }
   },
   "field": {
     "bg":            { "$value": "{color.bg.surface}",    "$type": "color" },

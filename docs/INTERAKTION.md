@@ -112,6 +112,48 @@ Varianten: `.kd-hero--split` (Text und Medienfläche nebeneinander),
 `.kd-hero--compact` (Unterseiten), `.kd-hero--light` (heller Grund für
 Fachanwendungen — setzt nur Tokens um, keine eigenen Regeln).
 
+### Wechselnde Hintergrundbilder
+
+Ebene 4 nimmt statt eines einzelnen Bildes auch mehrere auf. Sichtbar ist immer
+genau eine Folie; gewechselt wird per Klasse, das Aussehen des Wechsels steht
+im CSS.
+
+```html
+<div class="kd-hero__media kd-hero__media--slides kd-hero__media--drift"
+     data-kd-slideshow="7000" aria-hidden="true">
+	<div class="kd-hero__slide is-active"><img src="hero-1.avif" alt="" /></div>
+	<div class="kd-hero__slide"><img src="hero-2.avif" alt="" loading="lazy" /></div>
+</div>
+```
+
+`data-kd-slideshow` trägt die Standzeit in Millisekunden. `--drift` ergänzt eine
+sehr langsame Vergrösserung der sichtbaren Folie.
+
+**Die Bedienung ist keine Zutat.** WCAG 2.2.2 verlangt eine Möglichkeit,
+automatische Bewegung anzuhalten, sobald sie länger als fünf Sekunden läuft.
+Deshalb gehört `.kd-hero__slides-controls` mit Pausenschalter zur Komponente;
+das Skript blendet sie ein, sobald es sie findet. Ein Klick auf einen Punkt
+beendet den Automatiklauf — wer bewusst wählt, will nicht weitergeschoben
+werden.
+
+Bei `prefers-reduced-motion: reduce` läuft nichts von selbst und es wird nicht
+überblendet; die Punkte bleiben bedienbar. Im Hintergrundtab hält der Wechsel
+an. Ohne JavaScript bleibt die erste Folie stehen.
+
+**Schleier und Lesbarkeit.** Über dem Bild liegt ein dreistufiger Verlauf:
+`--kd-cmp-hero-veil-start` (0.94) auf der Textseite, `-veil-mid` (0.62) in der
+Mitte, `-veil-end` (0.24) auf der Bildseite. Das Motiv gehört deshalb in die
+**rechte** Bildhälfte. Für helle Bilder verschiebt man die drei Stufen — die
+Textfarben bleiben unberührt.
+
+Sobald eine Bildebene vorhanden ist, nimmt das System die driftenden Farbfelder
+automatisch auf `--kd-cmp-hero-drift-opacity-photo` (0.18) zurück; zwei
+konkurrierende Hintergrundbewegungen wirken sonst unruhig.
+
+**Bildmasse.** Die Fläche ist so breit wie das Fenster und 480 bis rund 950 px
+hoch. Als Ausgangsdatei eignen sich 2560 × 1200 px mit einer 1280er Fassung im
+`srcset`, in AVIF mit WebP-Rückfall.
+
 ---
 
 ## Verhalten ohne JavaScript

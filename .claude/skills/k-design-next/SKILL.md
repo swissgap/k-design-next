@@ -148,6 +148,12 @@ Effekt selbst steckt vollständig im CSS.
 `.kd-card--interactive` bündelt Anheben, Schatten, Lichtschein, Akzentkante,
 Bildzoom und Titelfärbung bereits — dort keine weiteren Primitive stapeln.
 
+Der Hero nimmt auf Ebene 4 auch **wechselnde Hintergrundbilder** auf
+(`.kd-hero__media--slides` mit `data-kd-slideshow`). Dazu gehört zwingend
+`.kd-hero__slides-controls` mit Pausenschalter — WCAG 2.2.2 verlangt eine
+Möglichkeit, automatische Bewegung über fünf Sekunden anzuhalten. Markup und
+Bildmasse stehen in `references/seitengeruest.md`.
+
 Bewegung insgesamt zurücknehmen, ohne Komponenten anzufassen:
 
 ```css

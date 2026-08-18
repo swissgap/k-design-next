@@ -276,6 +276,40 @@ Bild statt Farbfläche:
 </div>
 ```
 
+**Bildmasse:** volle Fensterbreite, 480 bis rund 950 px hoch. Ausgangsdatei
+2560 × 1200 px, dazu eine 1280er Fassung im `srcset`.
+
+**Wechselnde Bilder** (Slideshow):
+
+```html
+<div class="kd-hero__media kd-hero__media--slides kd-hero__media--drift"
+     data-kd-slideshow="7000" aria-hidden="true">
+	<div class="kd-hero__slide is-active"><img src="hero-1.avif" alt="" /></div>
+	<div class="kd-hero__slide"><img src="hero-2.avif" alt="" loading="lazy" /></div>
+	<div class="kd-hero__slide"><img src="hero-3.avif" alt="" loading="lazy" /></div>
+</div>
+
+<div class="kd-hero__slides-controls" hidden>
+	<button class="kd-hero__slides-toggle" type="button" aria-pressed="false" aria-label="Bildwechsel anhalten">
+		<svg class="kd-icon-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5h3v14H8zM13 5h3v14h-3z" /></svg>
+		<svg class="kd-icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z" /></svg>
+	</button>
+	<ul class="kd-hero__slides-dots">
+		<li><button class="kd-hero__slides-dot" type="button" aria-current="true" aria-label="Bild 1 anzeigen"></button></li>
+		<li><button class="kd-hero__slides-dot" type="button" aria-label="Bild 2 anzeigen"></button></li>
+		<li><button class="kd-hero__slides-dot" type="button" aria-label="Bild 3 anzeigen"></button></li>
+	</ul>
+</div>
+```
+
+Die Bedienung ist **nicht optional**: WCAG 2.2.2 verlangt eine Möglichkeit,
+automatische Bewegung über fünf Sekunden anzuhalten. Das Skript blendet den
+Block ein, sobald es ihn findet.
+
+Über dem Bild liegt ein dreistufiger Schleier — links deckend für den Text,
+rechts durchlässig. Das **Motiv gehört in die rechte Bildhälfte**. Für helle
+Bilder verschiebt man `--kd-cmp-hero-veil-start/-mid/-end`.
+
 ## 8 Sektionen
 
 ```html
